@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 2.6: Dependence on the parameters and initial conditions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout">
+<aside class="sidetoc" aria-label="On this page">
+  <p class="sidetoc-title">Section 2.6</p>
+  <ol>
+<li><a href="#sec2-6-1"><span class="tnum">2.6.1</span><span class="ttl">Continuous dependence on the initial conditions and parameters</span></a></li>
+<li><a href="#sec2-6-2"><span class="tnum">2.6.2</span><span class="ttl">Differentiable dependence on the initial conditions and parameters</span></a></li>
+  </ol>
+</aside>
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">2.6</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Dependence on the parameters and initial conditions</h1>
+    <p class="byline">Chapter 2 · Fundamental theorems</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<nav class="toc" aria-label="Contents">
+  <p class="toc-title">In this section</p>
+  <ol>
+<li><a href="#sec2-6-1"><span class="tnum">2.6.1</span><span class="ttl">Continuous dependence on the initial conditions and parameters</span></a></li>
+<li><a href="#sec2-6-2"><span class="tnum">2.6.2</span><span class="ttl">Differentiable dependence on the initial conditions and parameters</span></a></li>
+  </ol>
+</nav>
+<article class="notes">
+<p>Returning to the interpretation of the system of ordinary differential equations as a mathematical formalization of a finite-dimensional deterministic evolutionary process, it should be clear that existence and uniqueness of solutions are not the only desirable properties of solutions. It is also reasonable to expect that solutions will depend continuously on the initial conditions and parameters of the system. Taken together, these properties define what is called a <em>well-posed</em> problem<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="thm definition style-plain" id="definition-2-52"><p><span class="thm-head">Definition 2.52.</span> A problem is called <em>well-posed</em> if it has a solution, the solution is unique, and the solution depends continuously on the initial data and parameters of the problem.</p>
+</div>
+<h2 id="sec2-6-1"><span class="secnum">2.6.1</span><span class="sectitle">Continuous dependence on the initial conditions and parameters</span></h2>
+<p>The goal of this subsection is to prove that problem <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> is well-posed under the assumptions of Theorem <a href="section_2_4.html#th2:PL">2.42</a>.</p>
+<p>The problem <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> does not include any parameters. This is not a restriction, because any system that depends explicitly on parameters, such as <span class="math display">\[
+\dot{\bs x}=\bs f(t,\bs x,\bs \mu),\quad \bs \mu\in \R^m,\quad \bs x(t_0)=\bs x_0,
+\]</span> can be reformulated as <span class="math display">\[
+\dot{\bs x}=\bs f(t,\bs x,\bs y),\quad \dot{\bs y}=0,\quad \bs x(t_0)=\bs x_0,\quad \bs y(t_0)=\bs \mu,
+\]</span> i.e., in the form <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span>. Conversely, if one is given a system in the form <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span>, then by introducing <span class="math inline">\(\bs y=\bs x-\bs x_0\)</span> I find a new system <span class="math display">\[
+\dot{\bs y}=\bs f(t,\bs y+\bs x_0)=\bs g(t,\bs y,\bs x_0),\quad \bs y(t_0)=0,
+\]</span> i.e., I can talk about the initial data and parameters interchangeably. Note, however, that to apply the theory to the extended system, the function <span class="math inline">\(\bs f\)</span> must be (locally) Lipschitz with respect to <span class="math inline">\((\bs x,\bs \mu)\)</span>, and not only with respect to <span class="math inline">\(\bs x\)</span>.</p>
+<p>First I will need <em>Grönwall’s inequality</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<div class="thm lemma style-plain" id="l2:Gronwall"><p><span class="thm-head">Lemma 2.53 (Grönwall’s inequality).</span> Let <span class="math inline">\(u,a,b\)</span> be continuous nonnegative functions on <span class="math inline">\([t_0,t_1]\)</span>, <span class="math inline">\(C\geq 0\)</span>, and <span class="math display">\[
+u(t)\leq C+\int_{t_0}^t\bigl(a(\tau)u(\tau)+b(\tau)\bigr)\D\tau,\quad t\in[t_0,t_1].
+\]</span> Then <span class="math display">\[
+u(t)\leq \left(C+\int_{t_0}^tb(\tau)\D\tau\right)\exp\left(\int_{t_0}^ta(\tau)\D\tau\right),\quad t\in[t_0,t_1].
+\]</span></p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Denote by <span class="math inline">\(R(t)\)</span> the right-hand side of the assumed inequality. Then <span class="math inline">\(R\)</span> is continuously differentiable, <span class="math inline">\(u\leq R\)</span>, and <span class="math inline">\(R'=au+b\leq aR+b\)</span>. Hence, with <span class="math inline">\(E(t)=\exp\left(-\int_{t_0}^ta(\tau)\D\tau\right)\)</span>, <span class="math display">\[
+(RE)'=(R'-aR)E\leq bE\leq b.
+\]</span> Integrating from <span class="math inline">\(t_0\)</span> to <span class="math inline">\(t\)</span> and using <span class="math inline">\(R(t_0)=C\)</span>, I get <span class="math inline">\(R(t)E(t)\leq C+\int_{t_0}^tb(\tau)\D\tau\)</span>, which together with <span class="math inline">\(u\leq R\)</span> is the required inequality. <span class="qed">&#9632;</span></p></div>
+<p>An analogous statement holds on an interval <span class="math inline">\([t_1,t_0]\)</span> to the left of <span class="math inline">\(t_0\)</span>, with all the integrals taken from <span class="math inline">\(t\)</span> to <span class="math inline">\(t_0\)</span>.</p>
+<p>Now I am prepared to prove one more corollary to Theorem <a href="section_2_5.html#th2:leave">2.48</a> that is often useful in estimating the interval of existence.</p>
+<div class="thm corollary style-plain" id="corr:2:37"><p><span class="thm-head">Corollary 2.54.</span> Assume that <span class="math inline">\(U=J\times\R^k\)</span>, <span class="math inline">\(J=(c,d)\)</span>, and that there are continuous nonnegative functions <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> on <span class="math inline">\(J\)</span> such that <span class="math display">\[
+{\lvert \bs f(t,\bs x)\rvert }\leq A(t){\lvert \bs x\rvert }+B(t),\quad (t,\bs x)\in U.
+\]</span> Then every solution to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> is global.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Let <span class="math inline">\(\bs\phi\)</span> be the maximal solution, defined on <span class="math inline">\((\alpha,\beta)\)</span>, and assume that <span class="math inline">\(\beta&lt;d\)</span>. By Lemmas <a href="section_2_2.html#l2:1">2.7</a> and <a href="section_2_4.html#l2:int">2.36</a>, <span class="math display">\[
+{\lvert \bs \phi(t)\rvert }\leq {\lvert \bs x_0\rvert }+\int_{t_0}^t\bigl(A(\tau){\lvert \bs \phi(\tau)\rvert }+B(\tau)\bigr)\D \tau,\quad t\in[t_0,\beta),
+\]</span> and Lemma <a href="#l2:Gronwall">2.53</a> yields <span class="math display">\[
+{\lvert \bs \phi(t)\rvert }\leq R\coloneqq\left({\lvert \bs x_0\rvert }+\int_{t_0}^\beta B(\tau)\D\tau\right)\exp\left(\int_{t_0}^\beta A(\tau)\D\tau\right),\quad t\in[t_0,\beta).
+\]</span> Hence the graph of <span class="math inline">\(\bs\phi\)</span> over <span class="math inline">\([t_0,\beta)\)</span> stays in the compact set <span class="math inline">\([t_0,\beta]\times\{{\lvert \bs x\rvert }\leq R\}\subseteq U\)</span>, which contradicts Theorem <a href="section_2_5.html#th2:leave">2.48</a>. Therefore <span class="math inline">\(\beta=d\)</span>, and similarly <span class="math inline">\(\alpha=c\)</span>, i.e., <span class="math inline">\(\bs\phi\)</span> is global. <span class="qed">&#9632;</span></p></div>
+<p>Finally, consider again the autonomous system <span class="math display" id="eq2:9">\begin{equation}
+  \dot{\bs x}=\bs f(\bs x),\quad\bs x(t)\in \R^k,
+\tag{2.8}\end{equation}</span> defined on all <span class="math inline">\(\R^k\)</span>. I know that it is possible to have solutions not defined globally. Together with <span class="eqref">(<a href="#eq2:9">2.8</a>)</span> consider <span class="math display" id="eq2:resc">\begin{equation}
+\dot{\bs x}=\frac{\bs f(\bs x)}{1+{\lvert \bs f(\bs x)\rvert }}\,.
+\tag{2.9}\end{equation}</span> For the last system I have that <span class="math display">\[
+{\lvert \dot{\bs x}\rvert }\leq 1,
+\]</span> and therefore the conditions of the last corollary are satisfied (note that <span class="math inline">\(\bs f/(1+{\lvert \bs f\rvert })\)</span> is locally Lipschitz together with <span class="math inline">\(\bs f\)</span>), and the solutions to this system are defined globally. It is possible to show that if I have two vector fields <span class="math inline">\(\bs x\mapsto \bs f(\bs x)\)</span> and <span class="math inline">\(\bs x\mapsto h(\bs x)\bs f(\bs x)\)</span>, where <span class="math inline">\(h(\bs x)&gt;0\)</span>, then the orbits (the images of the corresponding solutions in the phase space) coincide, together with their orientation, which in a sense shows that I can always reparametrize the time in an autonomous system to guarantee that all the solutions are global.</p>
+<p>Now I will finalize the proof that problem <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> is well-posed.</p>
+<p>The first step is a simple quantitative estimate: as long as two solutions stay in a region where <span class="math inline">\(\bs f\)</span> is Lipschitz, the distance between them can grow at most exponentially.</p>
+<div class="thm lemma style-plain" id="l2:depest"><p><span class="thm-head">Lemma 2.55.</span> Let <span class="math inline">\(\bs x_1\)</span> and <span class="math inline">\(\bs x_2\)</span> be two solutions to <span class="math inline">\(\dot{\bs x}=\bs f(t,\bs x)\)</span> defined on an interval <span class="math inline">\(I\ni t_0\)</span>, and assume that their graphs lie in a set where <span class="math inline">\(\bs f\)</span> is Lipschitz in <span class="math inline">\(\bs x\)</span> with constant <span class="math inline">\(L\)</span>. Then <span class="math display">\[
+{\lvert \bs x_1(t)-\bs x_2(t)\rvert }\leq{\lvert \bs x_1(t_0)-\bs x_2(t_0)\rvert }\,e^{L{\lvert t-t_0\rvert }},\quad t\in I.
+\]</span></p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Let <span class="math inline">\(t\geq t_0\)</span> (the case <span class="math inline">\(t&lt;t_0\)</span> is similar) and <span class="math inline">\(v(t)={\lvert \bs x_1(t)-\bs x_2(t)\rvert }\)</span>. By Lemmas <a href="section_2_2.html#l2:1">2.7</a> and <a href="section_2_4.html#l2:int">2.36</a>, <span class="math display">\[
+v(t)\leq v(t_0)+\int_{t_0}^t{\lvert \bs f(\tau,\bs x_1(\tau))-\bs f(\tau,\bs x_2(\tau))\rvert }\D\tau\leq v(t_0)+\int_{t_0}^tLv(\tau)\D\tau,
+\]</span> and Lemma <a href="#l2:Gronwall">2.53</a> with <span class="math inline">\(C=v(t_0)\)</span>, <span class="math inline">\(a\equiv L\)</span>, and <span class="math inline">\(b\equiv 0\)</span> yields the required estimate. <span class="qed">&#9632;</span></p></div>
+<p>Lemma <a href="#l2:depest">2.55</a> alone does not yet give continuous dependence: it assumes that the nearby solution exists on the whole interval and stays in the region where <span class="math inline">\(\bs f\)</span> is Lipschitz. The next theorem shows that, under the standing assumptions, both conditions hold automatically, and hence the flow of an autonomous system is continuous.</p>
+<div class="thm theorem style-plain" id="th2:flowcont"><p><span class="thm-head">Theorem 2.56.</span> Let <span class="math inline">\(X\subseteq\R^k\)</span> be open, and let <span class="math inline">\(\bs f\colon X\longrightarrow\R^k\)</span> be continuous and locally Lipschitz in <span class="math inline">\(X\)</span>. For <span class="math inline">\(\bs x_0\in X\)</span> denote by <span class="math inline">\(t\mapsto\bs\phi(t,\bs x_0)\)</span> the maximal solution to <span class="math display">\[
+\dot{\bs x}=\bs f(\bs x),\quad \bs x(0)=\bs x_0,
+\]</span> defined on the maximal interval <span class="math inline">\(I(\bs x_0)=(\alpha(\bs x_0),\beta(\bs x_0))\)</span>. Then the set <span class="math display">\[
+D=\{(t,\bs x_0)\colon \bs x_0\in X,\ t\in I(\bs x_0)\}
+\]</span> is open in <span class="math inline">\(\R\times\R^k\)</span>, and <span class="math inline">\(\bs\phi\colon D\longrightarrow X\)</span> is continuous.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Fix <span class="math inline">\((t,\bs x_0)\in D\)</span>, and let <span class="math inline">\(t\geq 0\)</span> (the case <span class="math inline">\(t&lt;0\)</span> is similar). Choose <span class="math inline">\(T\)</span> such that <span class="math inline">\(t&lt;T&lt;\beta(\bs x_0)\)</span>.</p>
+<p>The set <span class="math inline">\(\Gamma=\{\bs\phi(\tau,\bs x_0)\colon \tau\in[0,T]\}\)</span> is compact, and since <span class="math inline">\(X\)</span> is open, there is <span class="math inline">\(r&gt;0\)</span> such that the compact set <span class="math inline">\(K=\{\bs x\colon {\lvert \bs x-\bs z\rvert }\leq r\text{ for some }\bs z\in\Gamma\}\)</span> lies in <span class="math inline">\(X\)</span>. By Lemma <a href="section_2_4.html#l2:locLip">2.40</a>, <span class="math inline">\(\bs f\)</span> is Lipschitz in <span class="math inline">\(K\)</span> with some constant <span class="math inline">\(L\)</span>.</p>
+<p>Let <span class="math inline">\(\bs y\in X\)</span> satisfy <span class="math inline">\({\lvert \bs y-\bs x_0\rvert }&lt;\rho\coloneqq re^{-LT}\)</span>. As long as <span class="math inline">\(\bs\phi(\tau,\bs y)\in K\)</span>, Lemma <a href="#l2:depest">2.55</a> gives <span class="math display">\[
+{\lvert \bs\phi(\tau,\bs y)-\bs\phi(\tau,\bs x_0)\rvert }\leq{\lvert \bs y-\bs x_0\rvert }e^{L\tau}&lt;r,\quad \tau\in[0,T],
+\]</span> so <span class="math inline">\(\bs\phi(\tau,\bs y)\)</span> cannot reach the boundary of <span class="math inline">\(K\)</span> and stays in <span class="math inline">\(K\)</span> as long as it is defined on <span class="math inline">\([0,T]\)</span>. If <span class="math inline">\(\beta(\bs y)\leq T\)</span>, the graph of <span class="math inline">\(\bs\phi(\cdot,\bs y)\)</span> over <span class="math inline">\([0,\beta(\bs y))\)</span> would stay in the compact set <span class="math inline">\([0,T]\times K\)</span>, which contradicts Theorem <a href="section_2_5.html#th2:leave">2.48</a>. Hence <span class="math inline">\(\bs\phi(\tau,\bs y)\)</span> is defined on <span class="math inline">\([0,T]\)</span> and <span class="math display">\[
+{\lvert \bs\phi(\tau,\bs y)-\bs\phi(\tau,\bs x_0)\rvert }\leq{\lvert \bs y-\bs x_0\rvert }e^{LT},\quad \tau\in[0,T].
+\]</span></p>
+<p>Applying the same argument to the left of <span class="math inline">\(0\)</span>, I find <span class="math inline">\(\epsilon&gt;0\)</span> such that <span class="math inline">\((-\epsilon,T)\times B_\rho(\bs x_0)\subseteq D\)</span>, so <span class="math inline">\(D\)</span> is open. Finally, for <span class="math inline">\((s,\bs y)\)</span> in this neighborhood, <span class="math display">\[
+{\lvert \bs\phi(s,\bs y)-\bs\phi(t,\bs x_0)\rvert }\leq{\lvert \bs\phi(s,\bs y)-\bs\phi(s,\bs x_0)\rvert }+{\lvert \bs\phi(s,\bs x_0)-\bs\phi(t,\bs x_0)\rvert }\leq {\lvert \bs y-\bs x_0\rvert }e^{LT}+{\lvert \bs\phi(s,\bs x_0)-\bs\phi(t,\bs x_0)\rvert },
+\]</span> and both terms tend to zero as <span class="math inline">\((s,\bs y)\to(t,\bs x_0)\)</span>. <span class="qed">&#9632;</span></p></div>
+<div class="thm remark style-remark" id="remark-2-57"><p><span class="thm-head">Remark 2.57.</span> If <span class="math inline">\(\bs f\)</span> is continuous and locally Lipschitz with respect to <span class="math inline">\((\bs x,\bs\mu)\)</span>, then applying Theorem <a href="#th2:flowcont">2.56</a> to the system <span class="math inline">\(\dot{\bs x}=\bs f(\bs x,\bs y)\)</span>, <span class="math inline">\(\dot{\bs y}=0\)</span>, I get that the solution <span class="math inline">\(\bs\phi(t,\bs x_0,\bs\mu)\)</span> is continuous in <span class="math inline">\((t,\bs x_0,\bs\mu)\)</span> on its (open) domain of definition. For a non-autonomous system <span class="math inline">\(\dot{\bs x}=\bs f(t,\bs x)\)</span> the proof above can be repeated verbatim.</p>
+</div>
+<div class="thm remark style-remark" id="remark-2-58"><p><span class="thm-head">Remark 2.58.</span> In fact, for a continuous right-hand side the Lipschitz condition is not needed for continuous dependence: if <span class="math inline">\(\bs f\)</span> is continuous and the solution to every initial value problem for <span class="math inline">\(\dot{\bs x}=\bs f(t,\bs x)\)</span> is unique, then the solutions depend continuously on the initial data. The proof uses the same compactness arguments as the proof of Peano’s theorem (see Hartman’s book). Thus, for ordinary differential equations with continuous right-hand side, uniqueness of solutions already implies well-posedness.</p>
+</div>
+<h2 id="sec2-6-2"><span class="secnum">2.6.2</span><span class="sectitle">Differentiable dependence on the initial conditions and parameters</span></h2>
+<p>It is also useful to know that if <span class="math inline">\(\bs f\in\mathcal C^{(p)}\)</span>, then the solution to the problem <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> depends differentiably on the initial conditions. Since the initial conditions and parameters of the problem can be interchanged, a similar statement applies to a parameter dependent problem. In particular, it is true that<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="thm theorem style-plain" id="th2:diffdep"><p><span class="thm-head">Theorem 2.59.</span> Let <span class="math inline">\(p\geq 1\)</span> and <span class="math inline">\(\bs f\in\mathcal C^{(p)}(U;\R^k)\)</span>, <span class="math inline">\(U=J\times X\times \Omega\)</span>. Then the problem <span class="math inline">\(\dot{\bs x}=\bs f(t,\bs x,\bs \mu),\,\bs x(t_0)=\bs x_0\)</span> has a solution <span class="math inline">\((t,t_0,\bs x_0,\bs \mu)\mapsto\bs \phi(t,t_0,\bs x_0,\bs \mu)\)</span> that is <span class="math inline">\(p\)</span> times continuously differentiable with respect to the variables <span class="math inline">\((t,t_0,\bs x_0,\bs \mu)\)</span> on its (open) domain of definition.</p>
+</div>
+<p>In particular, if <span class="math inline">\(\bs f\in\mathcal C^{(1)}\)</span>, then differentiating the corresponding integral equation <span class="eqref">(<a href="section_2_2.html#eq2:6">2.6</a>)</span> with respect to the <span class="math inline">\(j\)</span>-th coordinate <span class="math inline">\(x_{0j}\)</span> of <span class="math inline">\(\bs x_0\)</span> shows that <span class="math inline">\(\bs y=\partial\bs\phi/\partial x_{0j}\)</span> solves the <em>variational equation</em> <span class="math display" id="eq2:var">\begin{equation}
+\dot{\bs y}=\bs f_{\bs x}(t,\bs\phi(t))\,\bs y,\quad \bs y(t_0)=\bs e_j,
+\tag{2.10}\end{equation}</span> where <span class="math inline">\(\bs f_{\bs x}\)</span> is the Jacobi matrix of <span class="math inline">\(\bs f\)</span> with respect to <span class="math inline">\(\bs x\)</span>, and <span class="math inline">\(\bs e_j\)</span> is the <span class="math inline">\(j\)</span>-th standard basis vector. Similarly, <span class="math inline">\(\bs z=\partial\bs\phi/\partial\mu_j\)</span> solves <span class="math inline">\(\dot{\bs z}=\bs f_{\bs x}(t,\bs\phi(t),\bs\mu)\,\bs z+\partial\bs f/\partial\mu_j(t,\bs\phi(t),\bs\mu)\)</span>, <span class="math inline">\(\bs z(t_0)=0\)</span>. Note that the variational equation is linear.</p>
+<p>This theorem is important because it justifies some of the basic <em>perturbation methods</em>. Assume that a problem of the form <span class="math display">\[
+\dot{\bs x}=\bs f(t,\bs x,\epsilon),\quad \bs x(0)=\bs \eta
+\]</span> is given, depending on the scalar (for simplicity) parameter <span class="math inline">\(\epsilon\)</span>. Assume that <span class="math inline">\(\bs f\in\mathcal C^{(p+1)}\)</span>. Then the solution has <span class="math inline">\(p+1\)</span> continuous derivatives with respect to this parameter; in particular, for <span class="math inline">\(t\)</span> in any closed bounded interval on which the solution with <span class="math inline">\(\epsilon=0\)</span> is defined, the solution can be represented by the Taylor formula <span class="math display">\[
+\bs x(t)=\bs x_0(t)+\bs x_1(t)\epsilon+\bs x_2(t)\epsilon^2+\ldots+\bs x_p(t)\epsilon^p+\mathcal O({\lvert \epsilon\rvert }^{p+1}),
+\]</span> where <span class="math inline">\(\bs x_i(t)=\frac{1}{i!}\frac{\partial^i\bs x}{\partial \epsilon^i}(t)\big|_{\epsilon=0}\)</span>, and the constant in <span class="math inline">\(\mathcal O({\lvert \epsilon\rvert }^{p+1})\)</span> does not depend on <span class="math inline">\(t\)</span> in this interval. Here <span class="math inline">\(g=\mathcal O(f)\)</span> as <span class="math inline">\(u\to a\)</span> means that <span class="math inline">\({\lvert g(u)\rvert }\leq C{\lvert f(u)\rvert }\)</span> for some constant <span class="math inline">\(C\)</span> and <span class="math inline">\({\lvert u-a\rvert }&lt; \delta\)</span>. Hence <span class="math inline">\(\bs x_0\)</span> is the solution of the unperturbed problem <span class="math display">\[
+\dot{\bs x}_0=\bs f(t,\bs x_0,0)=\bs f_0(t,\bs x_0),\quad \bs x_0(0)=\bs \eta.
+\]</span> To find the equations to determine other <span class="math inline">\(\bs x_i\)</span> I can either formally differentiate the original equation with respect to <span class="math inline">\(\epsilon\)</span>, or, simpler, plug <span class="math inline">\(\bs x\)</span> into the original equation, expand the corresponding series, and equate the coefficients of the same powers of <span class="math inline">\(\epsilon\)</span>.</p>
+<div class="thm example style-definition" id="example-2-60"><p><span class="thm-head">Example 2.60.</span> Consider the IVP <span class="math display">\[
+\ddot x+\omega^2x=\epsilon x^3,\quad x(0)=1,\quad \dot x(0)=0,
+\]</span> where <span class="math inline">\(\omega&gt;0\)</span> is a constant. Let me find <span class="math inline">\(\left.\frac{\partial x}{\partial \epsilon}(t,\epsilon)\right|_{\epsilon=0}=x_1(t)\)</span>. First, I note that if <span class="math inline">\(\epsilon=0\)</span> then I have <span class="math display">\[
+\ddot x_0+\omega^2 x_0=0,\quad x_0(0)=1,\quad \dot x_0(0)=0,
+\]</span> with the solution <span class="math display">\[
+x_0(t)=\cos \omega t.
+\]</span> Differentiating the original equation with respect to <span class="math inline">\(\epsilon\)</span> I find <span class="math display">\[
+\ddot x_1+\omega^2x_1=\cos^3\omega t=\frac 14(\cos 3\omega t+3\cos \omega t),
+\]</span> with the initial conditions <span class="math display">\[
+x_1(0)=0,\quad \dot x_1(0)=0.
+\]</span> The last problem can be solved to find that <span class="math display">\[
+x_1(t)=\left.\frac{\partial x}{\partial \epsilon}(t)\right|_{\epsilon=0}=\frac{3}{8\omega}t\sin \omega t+\frac{1}{32\omega^2}(\cos\omega t-\cos 3\omega t).
+\]</span> Finally, I can use the found expression to approximate the unknown solution to the original problem as <span class="math display">\[
+x(t)=x_0(t)+x_1(t)\epsilon+\mathcal O({\lvert \epsilon\rvert }^2).
+\]</span> Note that <span class="math inline">\(x_1\)</span> contains the <em>secular term</em> <span class="math inline">\(\frac{3}{8\omega}t\sin\omega t\)</span>, which grows with <span class="math inline">\(t\)</span>. Hence this approximation is good only on bounded time intervals: for <span class="math inline">\(t\)</span> of order <span class="math inline">\(1/\epsilon\)</span> the correction <span class="math inline">\(\epsilon x_1\)</span> is of the same order as <span class="math inline">\(x_0\)</span>. Approximations valid on long time intervals require other methods (e.g., the Lindstedt–Poincaré method).</p>
+</div>
+<p>In the following exercises the variational equation <span class="eqref">(<a href="#eq2:var">2.10</a>)</span> will be useful.</p>
+<div class="thm exercise style-definition" id="exercise-2-30"><p><span class="thm-head">Exercise 2.30.</span> Find the derivative of the solution to <span class="math inline">\(\dot x=x^2+x\sin t\)</span> with respect to the initial condition <span class="math inline">\(x(0)=a\)</span> at <span class="math inline">\(a=0\)</span>.</p>
+<p><em>Answer:</em> <span class="math inline">\(e^{1-\cos t}\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-31"><p><span class="thm-head">Exercise 2.31.</span> Find the derivative of the solution to the pendulum equation <span class="math inline">\(\ddot \theta+\sin \theta=0\)</span> with the initial condition <span class="math inline">\(\theta(0)=a,\,\dot \theta(0)=0\)</span> with respect to <span class="math inline">\(a\)</span> at <span class="math inline">\(a=0\)</span>.</p>
+<p><em>Answer:</em> <span class="math inline">\(\cos t\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-32"><p><span class="thm-head">Exercise 2.32.</span> Let <span class="math display">\[
+\dot x=f(t,x),\quad x(\tau)=a,
+\]</span> and assume that the solution <span class="math inline">\(x=x(t,\tau,a)=x(t,\tau)\)</span>. Assume also that the solution at a specific time moment <span class="math inline">\(\tau=t_0\)</span> is known and given by <span class="math inline">\(t\mapsto x_0(t,t_0)\)</span>. Find the initial value problem for <span class="math display">\[
+x_1(t,t_0)=\frac{\partial x}{\partial \tau}(t,\tau)|_{\tau=t_0}.
+\]</span></p>
+<p><em>Answer:</em> <span class="math display">\[
+\dot x_1(t,t_0)=\frac{\partial f}{\partial x}(t,x_0(t,t_0))x_1(t,t_0),\quad x_1(t_0,t_0)=-f(t_0,a).
+\]</span></p>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The notion of a well-posed problem (“problème bien posé”) is due to Jacques Hadamard, who introduced it in 1902 in the context of boundary value problems for partial differential equations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>After Thomas Hakon Grönwall, who proved it in 1919 for constant coefficients, in a paper on the dependence of solutions of differential equations on parameters — exactly the application in this section. The more general integral form was proved by Richard Bellman in 1943, and therefore the inequality is often called the Grönwall–Bellman inequality.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>You can find a proof in, e.g., the monograph by Hartman. In the next chapter I will prove a weaker version of this theorem.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_2_5.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">2.5</span> On extending solutions</span></a><a class="next" href="section_2_7.html"><span class="dir">Next</span><span class="pt"><span class="pnum">2.7</span> Back to dynamical systems</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

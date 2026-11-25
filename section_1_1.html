@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 1.1: Newton&#x27;s second law, ordinary differential equations, and the three-body problem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout single">
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">1.1</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Newton’s second law, ordinary differential equations, and the three-body problem</h1>
+    <p class="byline">Chapter 1 · Introduction</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<article class="notes">
+<p>By <em>Newton’s second law</em> the product of the mass<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of a body and its acceleration is equal to the net force applied to this body: <span class="math display">\[
+m\bs a=\bs F,
+\]</span> where <span class="math inline">\(m\)</span> is a scalar, mass of the body, <span class="math inline">\(\bs a(t)\in\R^3\)</span> is a vector with three components at each time moment <span class="math inline">\(t\)</span>, <span class="math inline">\(\bs a\colon \R\longrightarrow \R^3\)</span>, and <span class="math inline">\(\bs F\bigl(t,\bs x(t),\bs{v}(t)\bigr)\in \R^3\)</span> is the net force, which may depend in general on the time <span class="math inline">\(t\)</span>, current displacement <span class="math inline">\(\bs x(t)\in \R^3\)</span>, or current velocity <span class="math inline">\(\bs v(t)\in \R^3\)</span> of the body.</p>
+<p>First let me assume for simplicity that the body under question has only one <em>degree of freedom</em>, which means that one coordinate is enough to specify the body’s position. In this case Newton’s second law looks simpler: <span class="math display">\[
+ma=F,
+\]</span> where now <span class="math inline">\(a(t)\)</span> and <span class="math inline">\(F(t,x(t),v(t))\)</span> are scalars at the fixed moment <span class="math inline">\(t\)</span>. Since acceleration <span class="math inline">\(a\)</span> is the rate of change of velocity <span class="math inline">\(v\)</span>, and velocity is the rate of change of displacement <span class="math inline">\(x\)</span>, <span class="math display">\[
+a=\frac{\D v}{\D t}\,,\quad v=\frac{\D x}{\D t}\,,
+\]</span> and hence the physical law takes the form <span class="math display">\[
+m\frac{\D^2 x}{\D t^2}=F,
+\]</span> or <span class="math display" id="eq1:1">\begin{equation}
+m\ddot x=F,
+\tag{1.1}\end{equation}</span> using the notation due to Isaac Newton himself: <span class="math display">\[
+\ddot x\coloneqq\frac{\D^2 x}{\D t^2}\,,\quad \dot x\coloneqq\frac{\D x}{\D t}\,.
+\]</span> Equation <span class="eqref">(<a href="#eq1:1">1.1</a>)</span> is a basic example of an <em>ordinary differential equation</em>, in which our goal is to find the function <span class="math inline">\(t\mapsto x(t)\)</span> that has two continuous derivatives and satisfies the equation.</p>
+<div class="thm example style-definition" id="example-1-1"><p><span class="thm-head">Example 1.1 (No force).</span> Assume that <span class="math inline">\(F=0\)</span>, then <span class="math inline">\(\ddot x=0\)</span>, and I can directly integrate (Newton invented Calculus to solve differential equations!) twice with respect to <span class="math inline">\(t\)</span> to find the solution <span class="math display">\[
+x(t)= C_1 t+C_2,
+\]</span> where <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are arbitrary (real, if we stick to the real-valued solutions) constants. To determine these constants I need the initial conditions that can be given, e.g., as <span class="math inline">\(x(0)=x_0\)</span> (initial position) and <span class="math inline">\(\dot x(0)=v_0\)</span> (initial velocity). This implies that my solution is the function <span class="math display">\[
+x(t)= x_0+v_0t,
+\]</span> which is actually a mathematical manifestation of <em>Newton’s first law</em>, which states that “an object at rest stays at rest and an object in motion stays in motion with the same speed and in the same direction unless acted upon by an unbalanced force.”</p>
+</div>
+<div class="thm example style-definition" id="example-1-2"><p><span class="thm-head">Example 1.2 (Constant force).</span> Now let <span class="math inline">\(F=\text{const}\)</span>. Directing the <span class="math inline">\(x\)</span>-axis upward and writing <span class="math inline">\(F=-mg\)</span> (the minus sign is chosen by tradition, so that a force pointing down corresponds to <span class="math inline">\(g&gt;0\)</span>), I get <span class="math display">\[
+\ddot x=-g,\quad g=\text{const}\in \R.
+\]</span> I again can simply integrate twice to find, using the same initial conditions as in the previous example, that <span class="math display">\[
+x(t)= x_0+v_0t-\frac{gt^2}{2}
+\]</span> is my solution. For example, the fate of a stone thrown vertically down (<span class="math inline">\(v_0&lt;0\)</span>) or up (<span class="math inline">\(v_0&gt;0\)</span>) from some height <span class="math inline">\(x_0\)</span> above the Earth’s ground is governed, approximately, by this solution.</p>
+</div>
+<div class="thm example style-definition" id="example-1-3"><p><span class="thm-head">Example 1.3 (Linear force).</span> Now let <span class="math inline">\(F\propto x\)</span>, where <span class="math inline">\(\propto\)</span> means “proportional.” For example, <em>Hooke’s law</em> states that “the force needed to extend or compress a spring by some distance is proportional to that distance.” Hence I have <span class="math display">\[
+m\ddot x=-kx,\quad k&gt;0,
+\]</span> where <span class="math inline">\(k\)</span> is called the spring constant. I can rewrite this differential equation as <span class="math display">\[
+\ddot x+\omega^2x=0,\quad \omega^2\coloneqq\frac{k}{m}\,.
+\]</span> This ordinary differential equation (ODE from now on) cannot be solved by simple consecutive integrations, but one can check that both <span class="math inline">\(x_1(t)= \sin \omega t\)</span> and <span class="math inline">\(x_2(t)= \cos \omega t\)</span> solve this equation, as well as any linear combination of them <span class="math display">\[
+x(t)= C_1x_1(t)+C_2x_2(t)=C_1\sin \omega t+C_2\cos \omega t.
+\]</span> Actually the last solution, as I will prove in this course, is the <em>general solution</em> to <span class="math inline">\(\ddot x+\omega^2x=0\)</span>, i.e., <em>any</em> solution to this equation can be expressed with this formula for some specific values of <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>.</p>
+</div>
+<p>Can every ODE be solved analytically? Not really.</p>
+<div class="thm example style-definition" id="example-1-4"><p><span class="thm-head">Example 1.4 (Three-body problem).</span> According to <em>Newton’s law of gravity</em>, two bodies of masses <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> respectively are attracted to each other with the force proportional to the product of their masses and inversely proportional to the square of the distance between them. Hence, if I have three bodies, and the only forces that are applied to them are gravitational, then Newton’s second law implies for the first body that <span class="math display">\[
+m_1\ddot{\bs x}_1=G\frac{m_1m_2}{{\lvert \bs x_1-\bs x_2\rvert }^2}\cdot\frac{\bs x_2-\bs x_1}{{\lvert \bs x_1-\bs x_2\rvert }}+G\frac{m_1m_3}{{\lvert \bs x_1-\bs x_3\rvert }^2}\cdot\frac{\bs x_3-\bs x_1}{{\lvert \bs x_1-\bs x_3\rvert }}\,,
+\]</span> where <span class="math inline">\(G\)</span> is the constant of proportionality in Newton’s law of gravity, <span class="math inline">\({\lvert \bs x\rvert }\coloneqq\sqrt{x_1^2+x_2^2+x_3^2}\)</span> for the vector<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="math inline">\(\bs x^\top=(x_1,x_2,x_3)\in \R^3\)</span>, such that <span class="math inline">\({\lvert \bs x-\bs y\rvert }\)</span> is the usual Euclidean distance between points <span class="math inline">\(\bs x,\bs y\in \R^3\)</span>, and <span class="math inline">\((\bs x_2-\bs x_1)/{\lvert \bs x_1-\bs x_2\rvert }\)</span> is the unit vector in the direction from the first body to the second one. I will also need two more equations for the second and third bodies: <span class="math display">\begin{align*}
+m_2\ddot{\bs x}_2&amp;=G\frac{m_1m_2}{{\lvert \bs x_1-\bs x_2\rvert }^2}\cdot\frac{\bs x_1-\bs x_2}{{\lvert \bs x_1-\bs x_2\rvert }}+G\frac{m_2m_3}{{\lvert \bs x_2-\bs x_3\rvert }^2}\cdot\frac{\bs x_3-\bs x_2}{{\lvert \bs x_2-\bs x_3\rvert }}\,,\\
+m_3\ddot{\bs x}_3&amp;=G\frac{m_2m_3}{{\lvert \bs x_2-\bs x_3\rvert }^2}\cdot\frac{\bs x_2-\bs x_3}{{\lvert \bs x_2-\bs x_3\rvert }}+G\frac{m_1m_3}{{\lvert \bs x_1-\bs x_3\rvert }^2}\cdot\frac{\bs x_1-\bs x_3}{{\lvert \bs x_1-\bs x_3\rvert }}\,.
+\end{align*}</span> Since I deal with the three-dimensional Euclidean space, I have a total of 9 equations, and I need 18 initial conditions. It turns out that we still lack a full understanding of the behavior of solutions to this system of ODEs. Here is a short digest of the history of this problem<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<dl>
+<dt>1687</dt>
+<dd>
+<p>Isaac Newton in his <em>Principia</em> (Philosophi<span>æ</span> Naturalis Principia Mathematica) was the first one to formulate the problem of determining the positions of three massive bodies (the Sun, the Earth, and the Moon).</p>
+</dd>
+<dt>1747</dt>
+<dd>
+<p>Jean d’Alembert and Alexis Clairaut published the first analytical treatment of the three-body problem.</p>
+</dd>
+<dt>1760</dt>
+<dd>
+<p>Leonhard Euler solved exactly a related problem: the motion of a body attracted by two <em>fixed</em> gravitational centers.</p>
+</dd>
+<dt>1767–1772</dt>
+<dd>
+<p>Euler found the periodic solutions of the three-body problem in which the three bodies always stay on one line (1767), and Joseph-Louis Lagrange found the periodic solutions in which they stay at the vertices of an equilateral triangle (1772). These remain the only known solutions of the general three-body problem in closed form.</p>
+</dd>
+<dt>1887</dt>
+<dd>
+<p>Ernst Bruns proved that the three-body problem cannot be solved analytically (well, my statement is oversimplification here, look it up).</p>
+</dd>
+<dt>1889</dt>
+<dd>
+<p>Henri Poincaré won a contest on the best solution to the three-body problem. He did not solve, of course, this problem, but formulated the beginning of the theory that eventually led to what is often called the <em>chaos theory</em> nowadays.</p>
+</dd>
+<dt>1912</dt>
+<dd>
+<p>Karl Sundman constructed a power series solution, which means that, in a sense, we do have an analytical solution to the three-body problem in the form of an infinite series. The usefulness of this solution, however, is doubtful at best: the series converges extremely slowly.</p>
+</dd>
+<dt>1975</dt>
+<dd>
+<p>Roger Broucke and Michel Hénon (and, independently, John Hadjidemetriou) found a new family of periodic solutions.</p>
+</dd>
+<dt>1993–2000</dt>
+<dd>
+<p>Cristopher Moore numerically discovered the “figure-eight” periodic solution, in which three equal masses chase each other along a single figure-eight-shaped curve (1993); Alain Chenciner and Richard Montgomery gave a rigorous proof of its existence (2000).</p>
+</dd>
+<dt>2013</dt>
+<dd>
+<p>By means of elaborate numerical calculations, 13 new periodic solutions belonging to 11 new families were found<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+</dd>
+<dt>2020</dt>
+<dd>
+<p>Neural networks were used to accurately integrate differential equations for the three-body problem<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+</dd>
+<dt>2024</dt>
+<dd>
+<p>Discovery of “islands of regularity” in the chaos<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+</dd>
+</dl>
+<p>To conclude, the history of attempts to analyze the three-body problem is definitely not over yet (one thing to note though is that the vast majority of the latest achievements are connected to implementing more and more precise numerical methods, not to analysis of the problem <em>per se</em>).</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-1"><p><span class="thm-head">Exercise 1.1.</span> The exact dynamics of a stone dropped from height <span class="math inline">\(h\)</span> above the Earth, if I disregard the air resistance, is described by Newton’s second law combined with Newton’s law of gravity: <span class="math display">\[
+m\ddot x=-G\frac{mM}{{\lvert x+R\rvert }^2}\,,
+\]</span> where <span class="math inline">\(x\)</span> is the height of the stone above the Earth’s surface, <span class="math inline">\(m\)</span> is the mass of the stone, <span class="math inline">\(M\)</span> is the mass of the Earth, and <span class="math inline">\(R\)</span> is the radius of the Earth. If I assume that <span class="math inline">\(x+R\approx R\)</span>, then I get an approximate equation, whose solution I denote by <span class="math inline">\(y\)</span>: <span class="math display">\[
+\ddot y=-g,\quad g\coloneqq G\frac{M}{R^2}\,.
+\]</span> Assuming that <span class="math inline">\(x(0)=y(0)=h&gt;0\)</span> and <span class="math inline">\(\dot x(0)=\dot y(0)=0\)</span>, for which equation is the time to reach the surface of the Earth smaller? Please note that you do not need to actually solve the equations.</p>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I assume that the student saw Newton’s second law before and has at least an intuitive understanding of the terms “mass,” “body,” “force,” even if the rigorous definitions cannot be spelled out. If somehow you did not see Newton’s second law before, omit this motivational section and go straight to the next one, with axiomatic-style definitions.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Note the distinction between vector <span class="math inline">\(\bs x_1\)</span> with three coordinates, say <span class="math inline">\((x^1_1,x^1_2,x^1_3)\)</span>, and the coordinate <span class="math inline">\(x_1\)</span> of the vector <span class="math inline">\(\bs x^\top=(x_1,x_2,x_3)\)</span>. Also note that all the vectors, if not stated otherwise, are <em>column-vectors</em>, and hence I use the transposition notation <span class="math inline">\(\bs x^\top\)</span> to write this vector as a <em>row-vector</em>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Every time I teach this course, I check the latest developments on the three-body problem. And every time I find something new and exciting!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>See M. Šuvakov and V. Dmitrašinović, Three classes of Newtonian three-body planar periodic orbits, Physical Review Letters, 110 (2013), 114301, <a href="https://arxiv.org/abs/1303.0181" class="uri">https://arxiv.org/abs/1303.0181</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>See Breen, P. G., Foley, C. N., Boekholt, T., &amp; Zwart, S. P. (2020). Newton versus the machine: solving the chaotic three-body problem using deep neural networks. Monthly Notices of the Royal Astronomical Society, 494(2), 2465–2470.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>See Trani, A. A., Leigh, N. W., Boekholt, T. C., &amp; Portegies Zwart, S. (2024). Isles of regularity in a sea of chaos amid the gravitational three-body problem. Astronomy &amp; Astrophysics, 689, A24.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</article>
+<nav class="pager" aria-label="More sections"><span></span><a class="next" href="section_1_2.html"><span class="dir">Next</span><span class="pt"><span class="pnum">1.2</span> Basic definitions and geometric interpretation of solutions</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

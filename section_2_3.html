@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 2.3: Auxiliary facts from analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout">
+<aside class="sidetoc" aria-label="On this page">
+  <p class="sidetoc-title">Section 2.3</p>
+  <ol>
+<li><a href="#sec2-3-1"><span class="tnum">2.3.1</span><span class="ttl">Metric spaces</span></a></li>
+<li><a href="#sec2-3-2"><span class="tnum">2.3.2</span><span class="ttl">Uniform convergence</span></a></li>
+<li><a href="#sec2-3-3"><span class="tnum">2.3.3</span><span class="ttl">Complete metric spaces</span></a></li>
+<li><a href="#sec2-3-4"><span class="tnum">2.3.4</span><span class="ttl">Normed vector spaces</span></a></li>
+<li><a href="#sec2-3-5"><span class="tnum">2.3.5</span><span class="ttl">The space <span class="math inline">\(\mathcal C(I;\R^k)\)</span></span></a></li>
+<li><a href="#sec2-3-6"><span class="tnum">2.3.6</span><span class="ttl">Contraction mapping principle</span></a></li>
+  </ol>
+</aside>
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">2.3</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Auxiliary facts from analysis</h1>
+    <p class="byline">Chapter 2 · Fundamental theorems</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<nav class="toc" aria-label="Contents">
+  <p class="toc-title">In this section</p>
+  <ol>
+<li><a href="#sec2-3-1"><span class="tnum">2.3.1</span><span class="ttl">Metric spaces</span></a></li>
+<li><a href="#sec2-3-2"><span class="tnum">2.3.2</span><span class="ttl">Uniform convergence</span></a></li>
+<li><a href="#sec2-3-3"><span class="tnum">2.3.3</span><span class="ttl">Complete metric spaces</span></a></li>
+<li><a href="#sec2-3-4"><span class="tnum">2.3.4</span><span class="ttl">Normed vector spaces</span></a></li>
+<li><a href="#sec2-3-5"><span class="tnum">2.3.5</span><span class="ttl">The space <span class="math inline">\(\mathcal C(I;\R^k)\)</span></span></a></li>
+<li><a href="#sec2-3-6"><span class="tnum">2.3.6</span><span class="ttl">Contraction mapping principle</span></a></li>
+  </ol>
+</nav>
+<article class="notes">
+<p>A basic mathematical structure that underlies most of modern mathematics is a <em>set</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. To make progress in describing various models, I need to add additional structures to the sets I deal with. For example, a <em>topological structure</em> implies that I can talk about <em>open</em> and <em>closed</em> sets, and can introduce the notions of <em>convergence</em> and <em>continuity</em>. Arguably, the simplest way to introduce a topological structure (but not the most general one!) is to consider a <em>metric</em>, or a <em>distance</em> function, on the given set.</p>
+<p>In this section I collect only what will be used in the proof of the existence and uniqueness theorem: complete metric spaces, the space of continuous functions with the uniform distance, the fact that closed subsets of complete metric spaces are complete, and the contraction mapping principle.</p>
+<h2 id="sec2-3-1"><span class="secnum">2.3.1</span><span class="sectitle">Metric spaces</span></h2>
+<div class="thm definition style-plain" id="definition-2-9"><p><span class="thm-head">Definition 2.9.</span> A <em>metric space</em> is a pair <span class="math inline">\((\mathcal M,\varrho)\)</span>, where <span class="math inline">\(\mathcal M\)</span> is the underlying set<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and <span class="math inline">\(\varrho \colon \mathcal M\times \mathcal M\longrightarrow \R\)</span> is a function that gives a “distance” between any two points <span class="math inline">\(x,y\)</span> of <span class="math inline">\(\mathcal M\)</span> and satisfies the following properties: <span class="math display">\begin{align*}
+\varrho(x,y)&amp;\geq 0,\quad \varrho(x,y)=0\Longleftrightarrow x=y,\quad\text{\emph{(}\textit{positivity}\emph{)}}\\
+\varrho(x,y)&amp;=\varrho(y,x),\quad\text{\emph{(}\textit{symmetry}\emph{)}}\\
+\varrho(x,y)&amp;\leq \varrho(x,z)+\varrho(z,y).\quad\text{\emph{(}\textit{triangle inequality}\emph{)}}
+\end{align*}</span></p>
+</div>
+<p>These are the natural properties of a distance that we are used to in the Euclidean space <span class="math inline">\(\R^3\)</span> with the standard distance <span class="math display">\[
+\varrho(\bs x,\bs y)=\sqrt{(x_1-y_1)^2+(x_2-y_2)^2+(x_3-y_3)^2},\quad \bs x,\bs y\in \R^3.
+\]</span></p>
+<p>Using the distance function I immediately get the notion of a convergent sequence, which turns sequences of possibly quite abstract objects into our familiar numerical sequences that converge to zero.</p>
+<div class="thm definition style-plain" id="definition-2-10"><p><span class="thm-head">Definition 2.10.</span> A sequence <span class="math inline">\((x_n)_{n=1}^\infty\)</span> of points of the metric space <span class="math inline">\((\mathcal M,\varrho)\)</span> is said to <em>converge</em> to <span class="math inline">\(x\in \mathcal M\)</span>, written as usual <span class="math display">\[
+\lim_{n\to\infty} x_n=x,\quad \text{or}\quad x_n\to x,
+\]</span> if for any <span class="math inline">\(\epsilon&gt;0\)</span> there exists <span class="math inline">\(N=N(\epsilon)\)</span> such that for all <span class="math inline">\(n\geq N\)</span> <span class="math display">\[
+\varrho(x_n,x)&lt; \epsilon.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-3"><p><span class="thm-head">Exercise 2.3.</span> Prove that a convergent sequence has only one limit.</p>
+</div>
+<p>Using the distance function I can also define <em>open</em> and <em>closed</em> sets. To wit, let <span class="math display">\[
+B_\delta(a)=\{x\in \mathcal M\colon \varrho(a,x)&lt;\delta\}
+\]</span> be the <em>ball</em> with center <span class="math inline">\(a\)</span> and radius <span class="math inline">\(\delta&gt;0\)</span>, or a <span class="math inline">\(\delta\)</span>-<em>neighborhood</em> of the point <span class="math inline">\(a\)</span>.</p>
+<div class="thm definition style-plain" id="definition-2-11"><p><span class="thm-head">Definition 2.11.</span> A set <span class="math inline">\(U\subseteq \mathcal M\)</span> is <em>open</em> in the metric space <span class="math inline">\((\mathcal M,\varrho)\)</span> if for each point <span class="math inline">\(x\in U\)</span> there exists a ball <span class="math inline">\(B_\delta(x)\)</span> such that <span class="math inline">\(B_\delta(x)\subseteq U\)</span>. A set <span class="math inline">\(A\subseteq \mathcal M\)</span> is <em>closed</em> if its complement <span class="math inline">\(\mathcal M\setminus A\)</span> is open.</p>
+</div>
+<p>In analysis (specifically, in the situation when I work in a metric space) it is almost always much more convenient to work with an equivalent characterization of closed sets.</p>
+<div class="thm lemma style-plain" id="l2:closed"><p><span class="thm-head">Lemma 2.12.</span> A set <span class="math inline">\(A\subseteq \mathcal M\)</span> is closed if and only if for any convergent sequence <span class="math inline">\((x_n)\)</span>, <span class="math inline">\(x_n\to x\)</span>, where all <span class="math inline">\(x_n\in A\)</span>, it follows that <span class="math inline">\(x\in A\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-4"><p><span class="thm-head">Exercise 2.4.</span> Prove Lemma <a href="#l2:closed">2.12</a>. Prove that a ball is an open set. Is <span class="math inline">\(\mathcal M\)</span> open? Is it closed? What about <span class="math inline">\(\emptyset\)</span>?</p>
+</div>
+<p>Here are several examples of metric spaces.</p>
+<div class="thm example style-definition" id="example-2-13"><p><span class="thm-head">Example 2.13.</span> <span class="math inline">\(\mathcal M=\R\)</span> with <span class="math inline">\(\varrho(x,y)={\lvert x-y\rvert }\)</span>.</p>
+</div>
+<div class="thm example style-definition" id="ex2:Rk"><p><span class="thm-head">Example 2.14.</span> <span class="math inline">\(\mathcal M=\R^k\)</span> with the Euclidean distance <span class="math display">\[
+\varrho_2(\bs x,\bs y)=\sqrt{\sum_{i=1}^k (x_i-y_i)^2}\,,
+\]</span> or with the distance <span class="math display">\[
+\varrho_\infty(\bs x,\bs y)=\max_{i}{\lvert x_i-y_i\rvert }.
+\]</span> Since <span class="math inline">\(\varrho_\infty(\bs x,\bs y)\leq \varrho_2(\bs x,\bs y)\leq \sqrt{k}\,\varrho_\infty(\bs x,\bs y)\)</span>, a sequence converges with respect to <span class="math inline">\(\varrho_2\)</span> if and only if it converges with respect to <span class="math inline">\(\varrho_\infty\)</span>, and in both cases convergence means the usual coordinatewise convergence.</p>
+</div>
+<div class="thm example style-definition" id="example-2-15"><p><span class="thm-head">Example 2.15.</span> Any set <span class="math inline">\(\mathcal M\)</span> with the <em>discrete</em> metric: <span class="math inline">\(\varrho(x,y)=1\)</span> if <span class="math inline">\(x\neq y\)</span> and <span class="math inline">\(\varrho(x,x)=0\)</span>. Here every set is both open and closed, and only the sequences that are eventually constant converge.</p>
+</div>
+<div class="thm example style-definition" id="ex2:C"><p><span class="thm-head">Example 2.16.</span> Let <span class="math inline">\(\mathcal M=\mathcal C[a,b]\)</span> be the set of continuous functions <span class="math inline">\(x\colon[a,b]\longrightarrow \R\)</span>. Since a continuous function attains its maximum on a closed interval, I can define <span class="math display">\[
+\varrho_\infty(x,y)=\max_{t\in[a,b]}{\lvert x(t)-y(t)\rvert }.
+\]</span> A different metric on the same set is given by <span class="math display">\[
+\varrho_1(x,y)=\int_a^b{\lvert x(t)-y(t)\rvert }\D t.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-5"><p><span class="thm-head">Exercise 2.5.</span> Check that <span class="math inline">\(\varrho_2\)</span>, <span class="math inline">\(\varrho_\infty\)</span>, <span class="math inline">\(\varrho_1\)</span>, and the discrete metric satisfy the axioms of a metric space.</p>
+</div>
+<div class="thm example style-definition" id="example-2-17"><p><span class="thm-head">Example 2.17.</span> If <span class="math inline">\((\mathcal M,\varrho)\)</span> is a metric space and <span class="math inline">\(Y\subseteq \mathcal M\)</span> is any subset, then <span class="math inline">\((Y,\varrho)\)</span>, where <span class="math inline">\(\varrho\)</span> is restricted to <span class="math inline">\(Y\times Y\)</span>, is also a metric space. Note that <span class="math inline">\(Y\)</span> does not have to have any additional structure. For instance, the set of functions <span class="math inline">\(x\in\mathcal C[a,b]\)</span> satisfying <span class="math inline">\({\lvert x(t)\rvert }\leq 1\)</span> for all <span class="math inline">\(t\in[a,b]\)</span> is a metric space with the distance <span class="math inline">\(\varrho_\infty\)</span>, although the sum of two such functions does not have to belong to this set.</p>
+</div>
+<p>Consider now a mapping <span class="math inline">\(g\colon \mathcal M_1\longrightarrow \mathcal M_2\)</span> between two metric spaces <span class="math inline">\((\mathcal M_1,\varrho_1)\)</span> and <span class="math inline">\((\mathcal M_2,\varrho_2)\)</span>.</p>
+<div class="thm definition style-plain" id="definition-2-18"><p><span class="thm-head">Definition 2.18.</span> The mapping <span class="math inline">\(g\)</span> is <em>continuous</em> at the point <span class="math inline">\(x_0\)</span> if for any <span class="math inline">\(\epsilon&gt;0\)</span> there exists a <span class="math inline">\(\delta=\delta(x_0,\epsilon)&gt;0\)</span> such that for any <span class="math inline">\(x\in \mathcal M_1\)</span> for which <span class="math inline">\(\varrho_1(x,x_0)&lt; \delta\)</span> I have <span class="math display">\[
+\varrho_2(g(x),g(x_0))&lt; \epsilon.
+\]</span> <span class="math inline">\(g\)</span> is <em>continuous</em> if it is continuous at each point of <span class="math inline">\(\mathcal M_1\)</span>.</p>
+</div>
+<p>The connection between continuity and convergent sequences can be stated as follows.</p>
+<div class="thm lemma style-plain" id="l2:cont"><p><span class="thm-head">Lemma 2.19.</span> A mapping <span class="math inline">\(g\colon\mathcal M_1\longrightarrow\mathcal M_2\)</span> is continuous if and only if <span class="math display">\[
+g(\lim x_n)=\lim g(x_n)
+\]</span> for any convergent sequence <span class="math inline">\((x_n)\)</span> in <span class="math inline">\((\mathcal M_1,\varrho_1)\)</span>. In other words, a mapping is continuous if and only if it preserves convergent sequences.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-6"><p><span class="thm-head">Exercise 2.6.</span> Prove Lemma <a href="#l2:cont">2.19</a>.</p>
+</div>
+<h2 id="sec2-3-2"><span class="secnum">2.3.2</span><span class="sectitle">Uniform convergence</span></h2>
+<p>Let me now recall the notions of <em>pointwise</em> and <em>uniform convergence</em>.</p>
+<p>The sequence of functions <span class="math inline">\((x_n)_{n=1}^\infty\)</span> <em>converges pointwise</em> on <span class="math inline">\([a,b]\)</span> to a function <span class="math inline">\(x\)</span> if, given any point <span class="math inline">\(t\in[a,b]\)</span> and any <span class="math inline">\(\epsilon&gt;0\)</span>, there exists <span class="math inline">\(N(\epsilon,t)\)</span> such that for any <span class="math inline">\(n\geq N\)</span> I have <span class="math inline">\({\lvert x_n(t)-x(t)\rvert }&lt; \epsilon\)</span>. Note that different <span class="math inline">\(t\)</span> may require different <span class="math inline">\(N\)</span>. A sequence of functions <span class="math inline">\((x_n)_{n=1}^\infty\)</span> <em>converges uniformly</em> to <span class="math inline">\(x\)</span> if for any <span class="math inline">\(\epsilon&gt;0\)</span> there exists <span class="math inline">\(N(\epsilon)\)</span> such that for any <span class="math inline">\(n\geq N\)</span> and any <span class="math inline">\(t\in[a,b]\)</span> I have <span class="math inline">\({\lvert x_n(t)-x(t)\rvert }&lt;\epsilon\)</span>. Note that now <span class="math inline">\(N\)</span> works for any <span class="math inline">\(t\)</span>. Since <span class="math display">\[
+{\lvert x_n(t)-x(t)\rvert }\leq \max_{t\in [a,b]}{\lvert x_n(t)-x(t)\rvert }=\varrho_\infty(x_n,x),
+\]</span> for continuous <span class="math inline">\(x_n\)</span> and <span class="math inline">\(x\)</span> uniform convergence is exactly the convergence in the metric space <span class="math inline">\((\mathcal C[a,b],\varrho_\infty)\)</span>.</p>
+<p>One of the most important properties of uniform convergence can be stated as follows.</p>
+<div class="thm lemma style-plain" id="l2:unif"><p><span class="thm-head">Lemma 2.20.</span> If the sequence <span class="math inline">\((x_n)_{n=1}^\infty\)</span> converges uniformly to <span class="math inline">\(x\)</span> and each <span class="math inline">\(x_n\in \mathcal C[a,b]\)</span>, then <span class="math inline">\(x\in\mathcal C[a,b]\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> I need to prove that <span class="math inline">\(x\)</span> is continuous at any <span class="math inline">\(t\in[a,b]\)</span>, i.e., for any <span class="math inline">\(\epsilon&gt;0\)</span> I need to find <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\({\lvert x(t)-x(s)\rvert }&lt; \epsilon\)</span> for <span class="math inline">\({\lvert t-s\rvert }&lt; \delta\)</span>.</p>
+<p>Pick any <span class="math inline">\(\epsilon&gt;0\)</span>. Since <span class="math inline">\((x_n)_{n=1}^\infty\)</span> converges uniformly, I can always find <span class="math inline">\(n\)</span> such that for any <span class="math inline">\(s\in[a,b]\)</span> <span class="math display">\[
+{\lvert x_n(s)-x(s)\rvert }&lt;\frac{\epsilon}{3}\,.
+\]</span> Since <span class="math inline">\(x_n\)</span> is continuous at <span class="math inline">\(t\)</span>, for given <span class="math inline">\(\epsilon/3\)</span> I can pick <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math display">\[
+{\lvert x_n(t)-x_n(s)\rvert }&lt; \frac \epsilon 3
+\]</span> for <span class="math inline">\({\lvert t-s\rvert }&lt;\delta\)</span>. Now <span class="math display">\[
+{\lvert x(t)-x(s)\rvert }\leq {\lvert x(t)-x_n(t)\rvert }+{\lvert x_n(t)-x_n(s)\rvert }+{\lvert x_n(s)-x(s)\rvert }&lt; \frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon.
+\]</span> <span class="qed">&#9632;</span></p></div>
+<h2 id="sec2-3-3"><span class="secnum">2.3.3</span><span class="sectitle">Complete metric spaces</span></h2>
+<p>To determine whether a given sequence converges using the definition requires knowing its limit. In practical situations, however, this limit is of course not known and cannot be reliably guessed. To be able to make conclusions about convergence of a given sequence, one needs to speak about a very important property of metric spaces — completeness.</p>
+<div class="thm definition style-plain" id="definition-2-21"><p><span class="thm-head">Definition 2.21.</span> A sequence <span class="math inline">\((x_n)_{n=1}^\infty\)</span> in a metric space <span class="math inline">\((\mathcal M,\varrho)\)</span> is called <em>fundamental</em> or <em>Cauchy</em> if for any <span class="math inline">\(\epsilon&gt;0\)</span> there exists <span class="math inline">\(N(\epsilon)\)</span> such that for any <span class="math inline">\(n,m\geq N\)</span> <span class="math display">\[
+\varrho(x_n,x_m)&lt;\epsilon.
+\]</span></p>
+</div>
+<div class="thm definition style-plain" id="definition-2-22"><p><span class="thm-head">Definition 2.22.</span> A metric space <span class="math inline">\((\mathcal M,\varrho)\)</span> is called <em>complete</em> if every fundamental sequence converges.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-7"><p><span class="thm-head">Exercise 2.7.</span> Prove that every convergent sequence is fundamental.</p>
+</div>
+<p>The converse is not true in general. The real line <span class="math inline">\(\R\)</span> with <span class="math inline">\(\varrho(x,y)={\lvert x-y\rvert }\)</span> is complete (this is one of the basic properties of real numbers, see any analysis book), whereas the set of rational numbers with the same distance is not: the decimal approximations <span class="math inline">\(1,\ 1.4,\ 1.41,\ 1.414,\ldots\)</span> of <span class="math inline">\(\sqrt 2\)</span> form a fundamental sequence that has no rational limit. Since convergence in <span class="math inline">\(\R^k\)</span> is coordinatewise (Example <a href="#ex2:Rk">2.14</a>), the space <span class="math inline">\(\R^k\)</span> is also complete.</p>
+<div class="thm lemma style-plain" id="l2:Ccomplete"><p><span class="thm-head">Lemma 2.23.</span> The metric space <span class="math inline">\((\mathcal C[a,b],\varrho_\infty)\)</span> is complete.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Let <span class="math inline">\((x_n)_{n=1}^\infty\)</span> be a fundamental sequence. Since for each fixed <span class="math inline">\(t\in[a,b]\)</span> the sequence <span class="math inline">\((x_n(t))_{n=1}^\infty\)</span> is fundamental in <span class="math inline">\(\R\)</span>, and <span class="math inline">\(\R\)</span> is complete, there exists at least a pointwise limit <span class="math display">\[
+\lim_{n\to\infty}x_n(t)=x(t),\quad t\in[a,b].
+\]</span> Now fix <span class="math inline">\(\epsilon&gt;0\)</span>. Since <span class="math inline">\((x_n)\)</span> is fundamental, there exists <span class="math inline">\(N(\epsilon)\)</span> such that for <span class="math inline">\(m,n\geq N\)</span> and each <span class="math inline">\(t\in[a,b]\)</span> <span class="math display">\[
+{\lvert x_m(t)-x_n(t)\rvert }\leq \varrho_\infty(x_m,x_n)&lt;\epsilon,
+\]</span> where <span class="math inline">\(N\)</span> does not depend on <span class="math inline">\(t\)</span>. It is possible to go to the limit <span class="math inline">\(n\to\infty\)</span> here since the absolute value is continuous. Taking the limit I conclude that <span class="math display">\[
+{\lvert x_m(t)-x(t)\rvert }\leq \epsilon,\quad m\geq N,
+\]</span> for <em>all</em> <span class="math inline">\(t\in[a,b]\)</span>, which exactly means uniform convergence. Since all <span class="math inline">\(x_m\)</span> are continuous, the limit <span class="math inline">\(x\)</span> is also continuous by Lemma <a href="#l2:unif">2.20</a>, and hence <span class="math inline">\(\varrho_\infty(x_m,x)\to 0\)</span>. <span class="qed">&#9632;</span></p></div>
+<p>The choice of the metric is important, as the following example shows.</p>
+<div class="thm example style-definition" id="example-2-24"><p><span class="thm-head">Example 2.24.</span> Consider the sequence <span class="math inline">\((x_n)_{n=1}^\infty\)</span> in <span class="math inline">\(\mathcal C[-1,1]\)</span> defined by <span class="math display">\[
+x_n(t)=\begin{cases}-1,&amp;-1\leq t\leq -\frac 1n\,,\\
+nt,&amp;-\frac 1n&lt;t&lt;\frac 1n\,,\\
+\phantom{-}1,&amp; \frac 1n\leq t\leq 1.
+\end{cases}
+\]</span> The sequence <span class="math inline">\((x_n)_{n=1}^\infty\)</span> is fundamental in <span class="math inline">\((\mathcal C[-1,1],\varrho_1)\)</span> (check it!). Consider also the discontinuous function <span class="math display">\[
+x(t)=\begin{cases}
+-1,&amp;-1\leq t\leq 0,\\
+\phantom{-}1,&amp;0&lt;t\leq 1,
+\end{cases}
+\]</span> for which <span class="math inline">\(\int_{-1}^1{\lvert x_n(t)-x(t)\rvert }\D t=1/n\to 0\)</span>. If <span class="math inline">\(x_n\to y\)</span> in <span class="math inline">\((\mathcal C[-1,1],\varrho_1)\)</span> for some continuous <span class="math inline">\(y\)</span>, then <span class="math display">\[
+\int_{-1}^1{\lvert y(t)-x(t)\rvert }\D t\leq \varrho_1(y,x_n)+\int_{-1}^1{\lvert x_n(t)-x(t)\rvert }\D t\to 0,
+\]</span> hence <span class="math inline">\(y(t)=-1\)</span> for <span class="math inline">\(t\in[-1,0)\)</span> and <span class="math inline">\(y(t)=1\)</span> for <span class="math inline">\(t\in(0,1]\)</span> (why?), which is impossible for a continuous <span class="math inline">\(y\)</span>. Therefore, <span class="math inline">\((\mathcal C[-1,1],\varrho_1)\)</span> is not complete.</p>
+</div>
+<p>Finally, I will need the following simple fact.</p>
+<div class="thm lemma style-plain" id="l2:closedcomplete"><p><span class="thm-head">Lemma 2.25.</span> A closed subset <span class="math inline">\(A\)</span> of a complete metric space <span class="math inline">\((\mathcal M,\varrho)\)</span> is itself a complete metric space with the same distance <span class="math inline">\(\varrho\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Let <span class="math inline">\((x_n)\)</span> be a fundamental sequence in <span class="math inline">\(A\)</span>. Then it is fundamental in <span class="math inline">\(\mathcal M\)</span>, and since <span class="math inline">\(\mathcal M\)</span> is complete, <span class="math inline">\(x_n\to x\in\mathcal M\)</span>. Since <span class="math inline">\(A\)</span> is closed, <span class="math inline">\(x\in A\)</span> by Lemma <a href="#l2:closed">2.12</a>. <span class="qed">&#9632;</span></p></div>
+<h2 id="sec2-3-4"><span class="secnum">2.3.4</span><span class="sectitle">Normed vector spaces</span></h2>
+<p>In what follows I will mostly be working in metric spaces that also have the structure of a linear (vector) space over <span class="math inline">\(\R\)</span>, i.e., I can add their elements and multiply them by real numbers, and the usual rules of linear algebra hold. The basic example of a real vector space is <span class="math inline">\(\R^k\)</span>, where the vectors<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> are <span class="math inline">\(\bs x=(x_1,\ldots,x_k)^\top\)</span>; another example is <span class="math inline">\(\mathcal C[a,b]\)</span> with pointwise operations. For such spaces the distance is usually given by a <em>norm</em>, which unites both the topological (metric) and algebraic properties.</p>
+<div class="thm definition style-plain" id="definition-2-26"><p><span class="thm-head">Definition 2.26.</span> Let <span class="math inline">\(\mathcal V\)</span> be a real vector space. A function <span class="math inline">\({\lVert \cdot\rVert }\colon \mathcal V\longrightarrow\R\)</span> is called a norm in <span class="math inline">\(\mathcal V\)</span> if for any <span class="math inline">\(x,y\in \mathcal V\)</span> and <span class="math inline">\(\alpha\in\R\)</span> it satisfies <span class="math display">\begin{align*}
+{\lVert x\rVert }&amp;\geq 0,\,{\lVert x\rVert }=0\Longleftrightarrow x=0,\quad\text{\emph{(}\textit{positivity}\emph{)}}\\
+{\lVert \alpha x\rVert }&amp;={\lvert \alpha\rvert }{\lVert x\rVert },\quad\text{\emph{(}\textit{homogeneity}\emph{)}}\\
+{\lVert x+y\rVert }&amp;\leq {\lVert x\rVert }+{\lVert y\rVert }.\quad\text{\emph{(}\textit{triangle inequality}\emph{)}}
+\end{align*}</span> A vector space <span class="math inline">\(\mathcal V\)</span> with a norm defined on it is called a normed vector space and denoted <span class="math inline">\((\mathcal V,{\lVert \cdot\rVert })\)</span> or simply <span class="math inline">\(\mathcal V\)</span> if no confusion arises.</p>
+</div>
+<p>Every normed space has the natural metric <span class="math display">\[
+\varrho(x,y)={\lVert x-y\rVert },
+\]</span> and therefore everything said above about metric spaces applies to normed spaces. For example, <span class="math inline">\(x_n\to x\)</span> in <span class="math inline">\((\mathcal V,{\lVert \cdot\rVert })\)</span> if the sequence of real numbers <span class="math inline">\({\lVert x_n-x\rVert }\)</span> converges to zero.</p>
+<div class="thm definition style-plain" id="definition-2-27"><p><span class="thm-head">Definition 2.27.</span> A normed vector space that is complete with respect to the metric <span class="math inline">\(\varrho(x,y)={\lVert x-y\rVert }\)</span> is called a <em>Banach space</em>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-8"><p><span class="thm-head">Exercise 2.8.</span> Show that <span class="math display">\[
+{\Bigl\lvert {\lVert x\rVert }-{\lVert y\rVert }\Bigr\rvert }\leq {\lVert x-y\rVert }.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-9"><p><span class="thm-head">Exercise 2.9.</span> Let <span class="math inline">\((\mathcal V,{\lVert \cdot\rVert })\)</span> be a normed vector space. Show that the norm, vector addition, and multiplication by scalars are continuous.</p>
+</div>
+<div class="thm example style-definition" id="ex2:normsRk"><p><span class="thm-head">Example 2.28.</span> Let <span class="math inline">\(\mathcal V=\R^k\)</span>. The distances in Example <a href="#ex2:Rk">2.14</a> are generated by the norms <span class="math display">\[
+{\lVert \bs x\rVert }_2=\sqrt{\sum_{i=1}^k x_i^2}\,,\qquad {\lVert \bs x\rVert }_\infty=\max_{i}{\lvert x_i\rvert }.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-10"><p><span class="thm-head">Exercise 2.10.</span> Prove that <span class="math inline">\({\lVert \cdot\rVert }_2\)</span> is a norm. (<em>Hint:</em> First prove the Cauchy–Schwarz inequality <span class="math inline">\({\lvert \bs x\cdot\bs y\rvert }\leq {\lVert \bs x\rVert }_2 {\lVert \bs y\rVert }_2\)</span>, where <span class="math inline">\(\bs x\cdot\bs y\coloneqq\sum_{i=1}^kx_iy_i\)</span>, and use <span class="math inline">\({\lVert \bs x\rVert }^2_2=\bs x\cdot\bs x\)</span>.)</p>
+</div>
+<p>Two norms <span class="math inline">\({\lVert \cdot\rVert }_a\)</span> and <span class="math inline">\({\lVert \cdot\rVert }_b\)</span> on the same vector space <span class="math inline">\(\mathcal V\)</span> are <em>equivalent</em> if there exist constants <span class="math inline">\(c,C&gt;0\)</span> such that <span class="math inline">\(c{\lVert x\rVert }_a\leq {\lVert x\rVert }_b\leq C{\lVert x\rVert }_a\)</span> for any <span class="math inline">\(x\in \mathcal V\)</span>. Equivalent norms define the same convergent sequences and the same open and closed sets.</p>
+<div class="thm theorem style-plain" id="th2:equiv"><p><span class="thm-head">Theorem 2.29.</span> Any two norms on <span class="math inline">\(\R^k\)</span> are equivalent.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-11"><p><span class="thm-head">Exercise 2.11.</span> Prove Theorem <a href="#th2:equiv">2.29</a>.</p>
+</div>
+<p>Hence one can speak of convergence and continuity in <span class="math inline">\(\R^k\)</span> without specifying which norm is used, and <span class="math inline">\(\R^k\)</span> is a Banach space with respect to any norm. <em>From now on, <span class="math inline">\({\lvert \bs x\rvert }\)</span> denotes a fixed norm of <span class="math inline">\(\bs x\in\R^k\)</span>.</em></p>
+<h2 id="sec2-3-5"><span class="secnum">2.3.5</span><span class="sectitle">The space <span class="math inline">\(\mathcal C(I;\R^k)\)</span></span></h2>
+<p>Let <span class="math inline">\(I\)</span> be a closed bounded interval, and let <span class="math inline">\(\mathcal C(I;\R^k)\)</span> be the vector space of continuous functions <span class="math inline">\(\bs x\colon I\longrightarrow\R^k\)</span> with pointwise operations. Define <span class="math display">\[
+{\lVert \bs x\rVert }_\infty=\max_{t\in I}{\lvert \bs x(t)\rvert }.
+\]</span> For <span class="math inline">\(k=1\)</span> this is the metric <span class="math inline">\(\varrho_\infty\)</span> of Example <a href="#ex2:C">2.16</a>.</p>
+<div class="thm corollary style-plain" id="c2:Banach"><p><span class="thm-head">Corollary 2.30.</span> <span class="math inline">\((\mathcal C(I;\R^k),{\lVert \cdot\rVert }_\infty)\)</span> is a Banach space.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> The proofs of Lemmas <a href="#l2:unif">2.20</a> and <a href="#l2:Ccomplete">2.23</a> work word for word if the absolute value is replaced by the norm <span class="math inline">\({\lvert \cdot\rvert }\)</span> in <span class="math inline">\(\R^k\)</span> and the completeness of <span class="math inline">\(\R\)</span> is replaced by the completeness of <span class="math inline">\(\R^k\)</span>. <span class="qed">&#9632;</span></p></div>
+<div class="thm corollary style-plain" id="c2:B"><p><span class="thm-head">Corollary 2.31.</span> Let <span class="math inline">\(\bs x_0\in\R^k\)</span> and <span class="math inline">\(b&gt;0\)</span>. The set <span class="math display">\[
+\mathcal B=\left\{\bs x\in\mathcal C(I;\R^k)\colon {\lvert \bs x(t)-\bs x_0\rvert }\leq b\text{ for all }t\in I\right\}
+\]</span> with the distance <span class="math inline">\(\varrho(\bs x,\bs y)={\lVert \bs x-\bs y\rVert }_\infty\)</span> is a complete metric space.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> By Corollary <a href="#c2:Banach">2.30</a> and Lemma <a href="#l2:closedcomplete">2.25</a> it is enough to show that <span class="math inline">\(\mathcal B\)</span> is closed. If <span class="math inline">\(\bs x_n\in\mathcal B\)</span> and <span class="math inline">\(\bs x_n\to\bs x\)</span>, then for each <span class="math inline">\(t\in I\)</span> I have <span class="math inline">\(\bs x_n(t)\to\bs x(t)\)</span>, and by the continuity of the norm <span class="math inline">\({\lvert \bs x(t)-\bs x_0\rvert }=\lim{\lvert \bs x_n(t)-\bs x_0\rvert }\leq b\)</span>, i.e., <span class="math inline">\(\bs x\in\mathcal B\)</span>. <span class="qed">&#9632;</span></p></div>
+<p>Note that <span class="math inline">\(\mathcal B\)</span> is not a vector space, but it is a complete metric space, which is all I need for the contraction mapping principle below.</p>
+<h2 id="sec2-3-6"><span class="secnum">2.3.6</span><span class="sectitle">Contraction mapping principle</span></h2>
+<p>Consider a metric space <span class="math inline">\((\mathcal M,\varrho)\)</span>.</p>
+<div class="thm definition style-plain" id="definition-2-32"><p><span class="thm-head">Definition 2.32.</span> A point <span class="math inline">\(\hat x\in \mathcal M\)</span> is called a fixed point of a mapping <span class="math inline">\(T\colon \mathcal M\longrightarrow \mathcal M\)</span> if <span class="math display">\[
+\hat x=T\hat x.
+\]</span></p>
+</div>
+<div class="thm definition style-plain" id="definition-2-33"><p><span class="thm-head">Definition 2.33.</span> A mapping <span class="math inline">\(T\colon \mathcal M\longrightarrow \mathcal M\)</span> of a metric space <span class="math inline">\((\mathcal M,\varrho)\)</span> is called a contraction if there exists a number <span class="math inline">\(q\)</span>, <span class="math inline">\(0\leq q&lt;1\)</span>, such that the inequality<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <span class="math display">\[
+\varrho(Tx_1,Tx_2)\leq q\,\varrho(x_1,x_2)
+\]</span> holds for any points <span class="math inline">\(x_1,x_2\in \mathcal M\)</span>.</p>
+</div>
+<p>Note in particular that the contraction mapping is continuous.</p>
+<div class="thm theorem style-plain" id="th2:contraction"><p><span class="thm-head">Theorem 2.34 (Banach’s fixed point theorem<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Stefan Banach proved this theorem in his doctoral thesis in 1922. This theorem is also called the contraction mapping principle.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>).</span> Let <span class="math inline">\((\mathcal M,\varrho)\)</span> be a complete metric space, and let <span class="math inline">\(T\colon \mathcal M\longrightarrow \mathcal M\)</span> be a contraction. Then <span class="math inline">\(T\)</span> has a unique fixed point <span class="math inline">\(\hat x\in \mathcal M\)</span>.</p>
+</div>
+<div class="proof"><span class="thm-head">Proof.</span>
+<span class="math inline">\( \)</span>
+<p><span class="math inline">\((i)\)</span> Uniqueness. Let <span class="math inline">\(\hat x\)</span> and <span class="math inline">\(\hat y\)</span> be such that <span class="math inline">\(T\hat x=\hat x\)</span> and <span class="math inline">\(T\hat y=\hat y\)</span>. Then, by <span class="math display">\[
+\varrho(\hat x,\hat y)=\varrho(T\hat x,T\hat y)\leq q\,\varrho(\hat x,\hat y)
+\]</span> and <span class="math inline">\(q&lt;1\)</span>, I have that <span class="math inline">\(\varrho(\hat x,\hat y)=0\)</span>, i.e., <span class="math inline">\(\hat x=\hat y\)</span>.</p>
+<p><span class="math inline">\((ii)\)</span> Existence. Consider a sequence <span class="math inline">\((x_n)_{n=0}^\infty\)</span> defined as <span class="math display">\[
+x_{n+1}=Tx_n,\quad x_0\in \mathcal M.
+\]</span> I estimate <span class="math display">\[
+\varrho(x_{n+1},x_{n})=\varrho(Tx_n,Tx_{n-1})\leq q\,\varrho(x_{n},x_{n-1})\leq\ldots\leq q^n\varrho(x_1,x_0).
+\]</span> Now, for <span class="math inline">\(m\geq n\)</span>, <span class="math display">\[
+\varrho(x_m,x_n)\leq \sum_{j=n}^{m-1}\varrho(x_{j+1},x_j)\leq \sum_{j=n}^{m-1}q^j\varrho(x_1,x_0)\leq \frac{q^n}{1-q}\,\varrho(x_1,x_0).
+\]</span> Since <span class="math inline">\(q^n\to 0\)</span>, the sequence <span class="math inline">\((x_n)_{n=0}^\infty\)</span> is fundamental, and since <span class="math inline">\(\mathcal M\)</span> is complete, there is the limit <span class="math inline">\(x_n\to \hat x\in \mathcal M\)</span>.</p>
+<p>Since a contraction is continuous, I can exchange the operations of limit and mapping (Lemma <a href="#l2:cont">2.19</a>), i.e., <span class="math display">\[
+x_{n+1}=Tx_n\implies \lim_{n\to \infty }x_{n+1}=T\lim_{n\to\infty} x_n\implies \hat x=T\hat x,
+\]</span> which proves that <span class="math inline">\(\hat x\)</span> is indeed a unique fixed point of <span class="math inline">\(T\)</span>. <span class="qed">&#9632;</span></p></div>
+<p>Letting <span class="math inline">\(m\to\infty\)</span> in the last estimate, I also get how fast the iterations converge: <span class="math display">\[
+\varrho(x_n,\hat x)\leq \frac{q^n}{1-q}\,\varrho(x_1,x_0).
+\]</span></p>
+<div class="thm remark style-remark" id="remark-2-35"><p><span class="thm-head">Remark 2.35.</span> Now it should be clear what the exact strategy for my ultimate goal is. I have the integral equation <span class="eqref">(<a href="section_2_2.html#eq2:6">2.6</a>)</span> and need to make its right-hand side a contraction. More precisely, I need a complete metric space (which quite obviously should be a set of the form <span class="math inline">\(\mathcal B\)</span> in Corollary <a href="#c2:B">2.31</a>, a closed subset of <span class="math inline">\(\mathcal C(I;\R^k)\)</span> with the uniform distance <span class="math inline">\(\varrho_\infty\)</span>), I need a mapping <span class="math inline">\(T\colon \bs x\mapsto \bs x_0+\int_{t_0}^t\bs f(\tau,\bs x(\tau))\D\tau\)</span>, and I need to choose the interval <span class="math inline">\(I\)</span> and the radius <span class="math inline">\(b\)</span> such that <span class="math inline">\(T\)</span> maps <span class="math inline">\(\mathcal B\)</span> into itself and is a contraction on it. This will guarantee both existence and uniqueness of the solution to the initial value problem <span class="eqref">(<a href="section_2_2.html#eq2:4">2.4</a>)</span>, <span class="eqref">(<a href="section_2_2.html#eq2:5">2.5</a>)</span>.</p>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This is a very light refresher. If a lot of the definitions are new in this section, the student needs to pick up an introductory analysis book. My favorites are T. W. Körner, A Companion to Analysis: A Second First and First Second Course in Analysis, AMS, 2003, and V.A. Zorich, Mathematical Analysis, Vols. I and II, Springer, 2004.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>In all these definitions if you need to be rigorous, you need to remember to add that <span class="math inline">\(\mathcal M\)</span> is nonempty. I say it once here, and for the rest of my notes all the spaces I consider will be nonempty by default.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I use the bold font exclusively to denote the vectors from <span class="math inline">\(\R^k\)</span>. Similarly, the bold font will be used to denote the mappings of <span class="math inline">\(\R^l\)</span> to <span class="math inline">\(\R^k,\,k&gt;1\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Here, as before with the evolutionary operator <span class="math inline">\(\varphi^t\)</span>, I abuse the notation and write <span class="math inline">\(Tx\)</span> to denote <span class="math inline">\(T(x)\)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_2_2.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">2.2</span> Motivation for the proof of the existence and uniqueness theorem</span></a><a class="next" href="section_2_4.html"><span class="dir">Next</span><span class="pt"><span class="pnum">2.4</span> Existence and uniqueness theorem</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

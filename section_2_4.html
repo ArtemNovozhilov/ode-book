@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 2.4: Existence and uniqueness theorem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout">
+<aside class="sidetoc" aria-label="On this page">
+  <p class="sidetoc-title">Section 2.4</p>
+  <ol>
+<li><a href="#sec2-4-1"><span class="tnum">2.4.1</span><span class="ttl">Proof for a system of first-order ODE</span></a></li>
+<li><a href="#sec2-4-2"><span class="tnum">2.4.2</span><span class="ttl">Some remarks and extensions</span></a></li>
+  </ol>
+</aside>
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">2.4</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Existence and uniqueness theorem</h1>
+    <p class="byline">Chapter 2 · Fundamental theorems</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<nav class="toc" aria-label="Contents">
+  <p class="toc-title">In this section</p>
+  <ol>
+<li><a href="#sec2-4-1"><span class="tnum">2.4.1</span><span class="ttl">Proof for a system of first-order ODE</span></a></li>
+<li><a href="#sec2-4-2"><span class="tnum">2.4.2</span><span class="ttl">Some remarks and extensions</span></a></li>
+  </ol>
+</nav>
+<article class="notes">
+<h2 id="sec2-4-1"><span class="secnum">2.4.1</span><span class="sectitle">Proof for a system of first-order ODE</span></h2>
+<p>In this section I will use Banach’s fixed point theorem to give a relatively short proof of the existence and uniqueness theorem for systems of first-order ODE. Conceptually, Banach’s theorem is an abstract version of Picard’s original method of successive approximations. Before getting to the actual theorem and its proof I still need to discuss certain technical points, the most important of which is the required regularity of my <span class="math inline">\(\bs f\)</span>.</p>
+<p>I aim to prove that the problem <span class="math display" id="eq2:7">\begin{equation}
+    \dot{\bs x}=\bs f(t,\bs x),\quad \bs x(t)\in X\subseteq \R^k,\quad \bs f\colon J\times X\longrightarrow \R^k,\quad \bs x(t_0)=\bs x_0\in X,
+\tag{2.7}\end{equation}</span> where <span class="math inline">\(J\subseteq \R\)</span> is an interval, has a unique solution.</p>
+<p>In the following I will use two norms. First, for this section for any element <span class="math inline">\(\bs x\)</span> of <span class="math inline">\(\R^k\)</span> I fix the norm <span class="math display">\[
+{\lvert \bs x\rvert }=\max_{i}{\lvert x_i\rvert },
+\]</span> note the absolute value notation for this norm. Second, for a continuous vector function <span class="math inline">\(\bs x\colon I\longrightarrow \R^k\)</span> I use the uniform norm <span class="math display">\[
+{\lVert \bs x\rVert }_\infty=\max_{t\in I}{\lvert \bs x(t)\rvert },
+\]</span> where the absolute value is exactly the previous norm. Here <span class="math inline">\(I\)</span> is a closed and bounded interval. Recall from the last section that the normed vector space <span class="math inline">\((\mathcal C(I;\R^k),{\lVert \cdot\rVert }_\infty)\)</span> is a Banach space (Corollary <a href="section_2_3.html#c2:Banach">2.30</a>).</p>
+<p>I will also need</p>
+<div class="thm lemma style-plain" id="l2:int"><p><span class="thm-head">Lemma 2.36.</span> If <span class="math inline">\(\bs x\in \mathcal C(I;\R^k)\)</span> and <span class="math inline">\(t_1,t_2\in I\)</span> then <span class="math display">\[
+{\left\lvert \int_{t_1}^{t_2} \bs x(t)\D t\right\rvert }\leq {\left\lvert \int_{t_1}^{t_2}{\lvert \bs x(t)\rvert }\D t\right\rvert }.
+\]</span></p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> I have <span class="math display">\[
+{\left\lvert \int_{t_1}^{t_2} x_j(t)\D t\right\rvert }\leq {\left\lvert \int_{t_1}^{t_2} {\lvert x_j(t)\rvert }\D t\right\rvert }\leq {\left\lvert \int_{t_1}^{t_2} {\lvert \bs x(t)\rvert }\D t\right\rvert }
+\]</span> since <span class="math display">\[
+{\lvert x_j(t)\rvert }\leq \max_{i}{\lvert x_i(t)\rvert }={\lvert \bs x(t)\rvert }.
+\]</span> The right-hand side does not depend on <span class="math inline">\(j\)</span>. Taking the maximum over <span class="math inline">\(j\)</span> on the left-hand side, I get the needed inequality. <span class="qed">&#9632;</span></p></div>
+<p>Recall from the first chapter that in a number of cases assuming that the right-hand side of an ODE is <span class="math inline">\(\mathcal C^{(1)}\)</span> is sufficient to guarantee existence and uniqueness of solutions. Here I will use a similar regularity condition on <span class="math inline">\(\bs f\)</span> that will be sufficient for both existence and uniqueness.</p>
+<div class="thm definition style-plain" id="def2:Lip"><p><span class="thm-head">Definition 2.37.</span> Let <span class="math inline">\(U\subseteq \R\times \R^k\)</span>. A function <span class="math inline">\(\bs f\colon U\longrightarrow \R^k\)</span> is called <em>Lipschitz continuous with respect to <span class="math inline">\(\bs x\)</span></em> (or Lipschitz in <span class="math inline">\(\bs x\)</span>) in <span class="math inline">\(U\)</span> if there exists a constant <span class="math inline">\(L\geq 0\)</span> such that <span class="math display">\[
+{\lvert \bs f(t,\bs x_1)-\bs f(t,\bs x_2)\rvert }\leq L{\lvert \bs x_1-\bs x_2\rvert }
+\]</span> for any points <span class="math inline">\((t,\bs x_1),(t,\bs x_2)\in U\)</span>. The constant <span class="math inline">\(L\)</span> is independent of the points <span class="math inline">\((t,\bs x_1)\)</span> and <span class="math inline">\((t,\bs x_2)\)</span> and is called the <em>Lipschitz constant</em>.</p>
+</div>
+<p>Note that only points with the <em>same</em> <span class="math inline">\(t\)</span> are compared: no condition is imposed on the dependence of <span class="math inline">\(\bs f\)</span> on <span class="math inline">\(t\)</span> (if <span class="math inline">\(\bs f\)</span> does not depend on <span class="math inline">\(t\)</span>, I will simply speak of <em>Lipschitz functions</em>). Note also that, since all norms on <span class="math inline">\(\R^k\)</span> are equivalent (Theorem <a href="section_2_3.html#th2:equiv">2.29</a>), whether <span class="math inline">\(\bs f\)</span> is Lipschitz in <span class="math inline">\(\bs x\)</span> does not depend on the choice of the norm; only the value of <span class="math inline">\(L\)</span> does.</p>
+<p>The requirement that <span class="math inline">\(\bs f\)</span> be Lipschitz in <span class="math inline">\(\bs x\)</span> in the whole domain <span class="math inline">\(U\)</span> is often too restrictive. A more general notion is given by the following definition.</p>
+<div class="thm definition style-plain" id="def2:locLip"><p><span class="thm-head">Definition 2.38.</span> Let <span class="math inline">\(U\subseteq \R\times \R^k\)</span> be open. A function <span class="math inline">\(\bs f\colon U\longrightarrow \R^k\)</span> is called <em>locally Lipschitz continuous with respect to <span class="math inline">\(\bs x\)</span></em> in <span class="math inline">\(U\)</span> if every point <span class="math inline">\((t_0,\bs x_0)\in U\)</span> has a neighborhood <span class="math inline">\(U_0\subseteq U\)</span> in which <span class="math inline">\(\bs f\)</span> is Lipschitz in <span class="math inline">\(\bs x\)</span>. The Lipschitz constant may depend on <span class="math inline">\(U_0\)</span>.</p>
+</div>
+<p>There is a simple criterion to determine whether a given <span class="math inline">\(\bs f\)</span> is locally Lipschitz.</p>
+<div class="thm lemma style-plain" id="l2:C1Lip"><p><span class="thm-head">Lemma 2.39.</span> Let <span class="math inline">\(U\subseteq \R\times\R^k\)</span> be open, and let <span class="math inline">\(\bs f=(f_1,\ldots,f_k)^\top\colon U\longrightarrow\R^k\)</span> be such that all the partial derivatives <span class="math inline">\(\partial f_i/\partial x_j\)</span>, <span class="math inline">\(i,j=1,\ldots,k\)</span>, exist and are continuous in <span class="math inline">\(U\)</span>. Then <span class="math inline">\(\bs f\)</span> is locally Lipschitz in <span class="math inline">\(\bs x\)</span> in <span class="math inline">\(U\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Fix <span class="math inline">\((t_0,\bs x_0)\in U\)</span>. Since <span class="math inline">\(U\)</span> is open, there exist <span class="math inline">\(a,b&gt;0\)</span> such that the cube <span class="math display">\[
+P=\left\{(t,\bs x)\colon {\lvert t-t_0\rvert }\leq a,\ {\lvert \bs x-\bs x_0\rvert }\leq b\right\}
+\]</span> lies in <span class="math inline">\(U\)</span> (recall that <span class="math inline">\({\lvert \bs x\rvert }=\max_i{\lvert x_i\rvert }\)</span>, so <span class="math inline">\(P\)</span> is indeed a cube). The set <span class="math inline">\(P\)</span> is compact, and therefore the continuous functions <span class="math inline">\(\partial f_i/\partial x_j\)</span> are bounded on <span class="math inline">\(P\)</span>: <span class="math display">\[
+m=\max_{i,j}\max_{P}{\left\lvert \frac{\partial f_i}{\partial x_j}\right\rvert }&lt;\infty.
+\]</span> Take <span class="math inline">\((t,\bs x),(t,\bs y)\in P\)</span> and consider the points <span class="math display">\[
+\bs u^{(j)}=(x_1,\ldots,x_j,y_{j+1},\ldots,y_k)^\top,\quad j=0,\ldots,k,
+\]</span> so that <span class="math inline">\(\bs u^{(0)}=\bs y\)</span> and <span class="math inline">\(\bs u^{(k)}=\bs x\)</span>. Each coordinate of <span class="math inline">\(\bs u^{(j)}\)</span> coincides with the corresponding coordinate of either <span class="math inline">\(\bs x\)</span> or <span class="math inline">\(\bs y\)</span>, hence <span class="math inline">\((t,\bs u^{(j)})\in P\)</span>, and the same is true for all the points of the segment connecting <span class="math inline">\(\bs u^{(j-1)}\)</span> and <span class="math inline">\(\bs u^{(j)}\)</span> (here I use that <span class="math inline">\(P\)</span> is a cube). The points <span class="math inline">\(\bs u^{(j-1)}\)</span> and <span class="math inline">\(\bs u^{(j)}\)</span> differ only in the <span class="math inline">\(j\)</span>-th coordinate, therefore, by the mean value theorem applied to the function of one variable <span class="math inline">\(s\mapsto f_i(t,x_1,\ldots,x_{j-1},s,y_{j+1},\ldots,y_k)\)</span>, <span class="math display">\[
+f_i(t,\bs u^{(j)})-f_i(t,\bs u^{(j-1)})=\frac{\partial f_i}{\partial x_j}(t,\bs \xi^{(j)})\,(x_j-y_j)
+\]</span> for some point <span class="math inline">\(\bs \xi^{(j)}\)</span> on the segment connecting <span class="math inline">\(\bs u^{(j-1)}\)</span> and <span class="math inline">\(\bs u^{(j)}\)</span>. Summing over <span class="math inline">\(j\)</span>, I get <span class="math display">\[
+{\lvert f_i(t,\bs x)-f_i(t,\bs y)\rvert }\leq \sum_{j=1}^k{\lvert f_i(t,\bs u^{(j)})-f_i(t,\bs u^{(j-1)})\rvert }\leq m\sum_{j=1}^k{\lvert x_j-y_j\rvert }\leq km{\lvert \bs x-\bs y\rvert }.
+\]</span> Taking the maximum over <span class="math inline">\(i\)</span> on the left-hand side yields <span class="math display">\[
+{\lvert \bs f(t,\bs x)-\bs f(t,\bs y)\rvert }\leq km{\lvert \bs x-\bs y\rvert },\quad (t,\bs x),(t,\bs y)\in P,
+\]</span> i.e., <span class="math inline">\(\bs f\)</span> is Lipschitz in <span class="math inline">\(\bs x\)</span> in <span class="math inline">\(P\)</span>, and hence in the interior of <span class="math inline">\(P\)</span>, which is a neighborhood of <span class="math inline">\((t_0,\bs x_0)\)</span>. <span class="qed">&#9632;</span></p></div>
+<p>I will also need the following fact.</p>
+<div class="thm lemma style-plain" id="l2:locLip"><p><span class="thm-head">Lemma 2.40.</span> Let <span class="math inline">\(U\subseteq \R\times\R^k\)</span> be open and <span class="math inline">\(\bs f\in\mathcal C(U;\R^k)\)</span>. Then <span class="math inline">\(\bs f\)</span> is locally Lipschitz in <span class="math inline">\(\bs x\)</span> in <span class="math inline">\(U\)</span> if and only if for every compact <span class="math inline">\(K\subseteq U\)</span> there exists <span class="math inline">\(L_K\geq 0\)</span> such that <span class="math display">\[
+{\lvert \bs f(t,\bs x_1)-\bs f(t,\bs x_2)\rvert }\leq L_K{\lvert \bs x_1-\bs x_2\rvert }
+\]</span> for any <span class="math inline">\((t,\bs x_1),(t,\bs x_2)\in K\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-12"><p><span class="thm-head">Exercise 2.12.</span> Prove Lemma <a href="#l2:locLip">2.40</a>. (<em>Hint:</em> For one direction, note that since <span class="math inline">\(U\)</span> is open, every point of <span class="math inline">\(U\)</span> is the center of a small closed cube that lies in <span class="math inline">\(U\)</span> and is compact. For the other one, assume the contrary: there exist <span class="math inline">\((t_n,\bs x_n),(t_n,\bs y_n)\in K\)</span> with <span class="math inline">\({\lvert \bs f(t_n,\bs x_n)-\bs f(t_n,\bs y_n)\rvert }&gt;n{\lvert \bs x_n-\bs y_n\rvert }\)</span>. Use the boundedness of <span class="math inline">\(\bs f\)</span> on <span class="math inline">\(K\)</span> to show that <span class="math inline">\({\lvert \bs x_n-\bs y_n\rvert }\to 0\)</span>, pass to a convergent subsequence, and get a contradiction with the Lipschitz condition in a neighborhood of the limit point.)</p>
+</div>
+<div class="thm example style-definition" id="example-2-41"><p><span class="thm-head">Example 2.41.</span> Let me give a few simple examples to connect the notion of a Lipschitz function with the examples from the first chapter.</p>
+<p><span class="math inline">\((a)\)</span> Let <span class="math inline">\(f(x)=x\)</span>, which is obviously Lipschitz on <span class="math inline">\(\R\)</span> with <span class="math inline">\(L=1\)</span>. The ODE <span class="math inline">\(\dot x=f(x)\)</span> with <span class="math inline">\(x(t_0)=x_0\)</span> has the solution <span class="math inline">\(x(t)=x_0e^{t-t_0}\)</span> defined on all <span class="math inline">\(\R\)</span>.</p>
+<p><span class="math inline">\((b)\)</span> Let <span class="math inline">\(f(x)=x^2\)</span>. It is continuously differentiable everywhere, and hence locally Lipschitz. Indeed, for any interval <span class="math inline">\([a,b]\)</span>, the constant <span class="math inline">\(L_{[a,b]}=2\max\{{\lvert a\rvert },{\lvert b\rvert }\}\)</span> will work. However, this function is not Lipschitz on <span class="math inline">\(\R\)</span>, since <span class="math inline">\({\lvert x^2-y^2\rvert }={\lvert x+y\rvert }{\lvert x-y\rvert }\)</span>, and for any constant <span class="math inline">\(L\geq 0\)</span> I can find <span class="math inline">\(x,y\)</span> such that <span class="math inline">\({\lvert x+y\rvert }&gt;L\)</span>. Recall Example <a href="section_1_2.html#ex1:20">1.20</a>, where I showed that the solutions to <span class="math inline">\(\dot x=x^2\)</span>, although they exist and are unique for any point <span class="math inline">\((t_0,x_0)\)</span>, are local and cannot, in general, be extended to all of <span class="math inline">\(\R\)</span>.</p>
+<p><span class="math inline">\((c)\)</span> Let <span class="math inline">\(f(x)=x^{1/3}\)</span> on <span class="math inline">\([-1,1]\)</span>. This function is not differentiable at <span class="math inline">\(0\)</span>. It is not Lipschitz either. Indeed, taking <span class="math inline">\(y=0,x&gt;0\)</span> and assuming that <span class="math inline">\(f\)</span> is Lipschitz implies that <span class="math display">\[
+\frac{1}{x^{2/3}}\leq L,
+\]</span> which is impossible for <span class="math inline">\(x\to 0^+\)</span>. Recall Example <a href="section_1_2.html#ex1:17">1.16</a>, where I showed that the solution to <span class="math inline">\(\dot x=x^{1/3}\)</span> with <span class="math inline">\(x(0)=0\)</span> is not unique.</p>
+<p><span class="math inline">\((d)\)</span> Let <span class="math inline">\(f(x)={\lvert x\rvert }\)</span>. This function is not differentiable at <span class="math inline">\(0\)</span>, and yet <span class="math display">\[
+{\bigl\lvert {\lvert x\rvert }-{\lvert y\rvert }\bigr\rvert }\leq {\lvert x-y\rvert },
+\]</span> hence <span class="math inline">\(f\)</span> is Lipschitz on <span class="math inline">\(\R\)</span> with <span class="math inline">\(L=1\)</span>.</p>
+<p><span class="math inline">\((e)\)</span> Let <span class="math inline">\(f(t,x)=\sqrt{{\lvert t\rvert }}\,x\)</span> on <span class="math inline">\(U=(-1,1)\times\R\)</span>. This function is not differentiable with respect to <span class="math inline">\(t\)</span> at <span class="math inline">\(t=0\)</span>, and yet it is Lipschitz in <span class="math inline">\(x\)</span> in <span class="math inline">\(U\)</span> with <span class="math inline">\(L=1\)</span>, since <span class="math inline">\({\lvert f(t,x)-f(t,y)\rvert }=\sqrt{{\lvert t\rvert }}{\lvert x-y\rvert }\leq{\lvert x-y\rvert }\)</span>. Only the dependence on <span class="math inline">\(x\)</span> matters.</p>
+</div>
+<p>All the hard work has been done and finally everything is ready to prove the long-promised theorem<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="thm theorem style-plain" id="th2:PL"><p><span class="thm-head">Theorem 2.42.</span> Consider problem <span class="eqref">(<a href="#eq2:7">2.7</a>)</span> and assume that <span class="math inline">\(\bs f\)</span> is continuous and locally Lipschitz continuous in <span class="math inline">\(\bs x\)</span> in a domain <span class="math inline">\(U\subseteq J\times X\)</span> such that <span class="math inline">\((t_0,\bs x_0)\in U\)</span>, and <span class="math inline">\(U\)</span> is open. Then problem <span class="eqref">(<a href="#eq2:7">2.7</a>)</span> has a unique solution <span class="math inline">\(t\mapsto \bs \phi(t)\)</span> defined on some interval <span class="math inline">\([t_0-\delta,t_0+\delta],\,\delta&gt;0\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Let <span class="math inline">\(P\)</span> be the <span class="math inline">\((k+1)\)</span>-dimensional cube <span class="math inline">\({\lvert \bs x-\bs x_0\rvert }\leq b,\,{\lvert t-t_0\rvert }\leq a\)</span> such that <span class="math inline">\(P\subseteq U\)</span>. Denote <span class="math inline">\(M=\max_{P}{\lvert \bs f(t,\bs x)\rvert }\)</span>. As the Banach space <span class="math inline">\(Y\)</span> I take the set of continuous vector functions <span class="math inline">\(\mathcal C([t_0-\delta,t_0+\delta];\R^k)\)</span>, where <span class="math inline">\(0&lt;\delta\leq a\)</span> will be determined later. Consider also the set <span class="math inline">\(\mathcal B\subseteq Y\)</span>, which is given by those <span class="math inline">\(\bs x\in Y\)</span> that satisfy <span class="math inline">\({\lVert \bs x-\bs x_0\rVert }_\infty\leq b\)</span>. <span class="math inline">\(\mathcal B\)</span> is chosen such that the graphs of <span class="math inline">\(\bs x\in \mathcal B\)</span> are in <span class="math inline">\(P\)</span>. <span class="math inline">\(\mathcal B\)</span> is a complete metric space (Corollary <a href="section_2_3.html#c2:B">2.31</a>). Recall that problem <span class="eqref">(<a href="#eq2:7">2.7</a>)</span> is equivalent (on the set of continuous functions) to the integral equation <span class="math inline">\(\bs x=T\bs x\)</span>, where the operator <span class="math inline">\(T\)</span> is given by <span class="math display">\[
+T\colon \bs x\mapsto \bs x_0+\int_{t_0}^t\bs f(\tau,\bs x(\tau))\D\tau.
+\]</span> Clearly, for <span class="math inline">\(\bs x\in\mathcal B\)</span>, <span class="math inline">\(T\bs x\)</span> is continuous as an integral of a continuous function so that <span class="math inline">\(T\colon \mathcal B\longrightarrow Y\)</span>.</p>
+<p><span class="math inline">\((i)\)</span> I will show that if <span class="math inline">\(\delta\)</span> is small enough then <span class="math inline">\(T\colon \mathcal B\longrightarrow \mathcal B\)</span>. Note that <span class="math inline">\(\mathcal B\)</span> was chosen such that the graph of <span class="math inline">\(\bs x\in\mathcal B\)</span> is in <span class="math inline">\(P\)</span>. Consider for <span class="math inline">\(t\in[t_0,t_0+\delta]\)</span> (the other side is treated similarly) <span class="math display">\[
+{\lvert (T\bs x)(t)-\bs x_0\rvert }={\left\lvert \int_{t_0}^t\bs f(\tau,\bs x(\tau))\D\tau\right\rvert }\leq {\left\lvert \int_{t_0}^t{\lvert \bs f(\tau,\bs x(\tau))\rvert }\D\tau\right\rvert }\leq {\left\lvert \int_{t_0}^t M\D\tau\right\rvert }\leq M\delta,
+\]</span> therefore <span class="math display">\[
+{\lVert T\bs x-\bs x_0\rVert }_\infty\leq M\delta.
+\]</span> If I choose <span class="math inline">\(\delta\)</span> to satisfy <span class="math display">\[
+\delta\leq \frac{b}{M}\,,
+\]</span> then <span class="math inline">\(T\colon \mathcal B\longrightarrow \mathcal B\)</span>.</p>
+<p><span class="math inline">\((ii)\)</span> I will show that if <span class="math inline">\(\delta\)</span> is small enough then <span class="math inline">\(T\colon \mathcal B\longrightarrow \mathcal B\)</span> is a contraction. By Lemma <a href="#l2:locLip">2.40</a>, <span class="math inline">\(\bs f\)</span> is Lipschitz continuous in <span class="math inline">\(\bs x\)</span> in <span class="math inline">\(P\)</span> with constant <span class="math inline">\(L_P\)</span>. Consider for <span class="math inline">\(t\in[t_0,t_0+\delta]\)</span> (the other side is treated similarly) <span class="math display">\begin{align*}
+{\lvert (T\bs x)(t)-(T\bs y)(t)\rvert }&amp;\leq {\left\lvert \int_{t_0}^t{\lvert \bs f(\tau,\bs x(\tau))-\bs f(\tau,\bs y(\tau))\rvert }\D\tau\right\rvert }\leq L_P{\left\lvert \int_{t_0}^t{\lvert \bs x(\tau)-\bs y(\tau)\rvert }\D\tau\right\rvert }\\
+&amp;\leq L_P{\left\lvert \int_{t_0}^t{\lVert \bs x-\bs y\rVert }_\infty\D\tau\right\rvert }\leq L_P\delta {\lVert \bs x-\bs y\rVert }_\infty,
+\end{align*}</span> which proves that if <span class="math display">\[
+\delta&lt;\frac{1}{L_P}\,,
+\]</span> then <span class="math inline">\(T\)</span> is a contraction. For instance, I can take <span class="math inline">\(\delta=1/(2L_P)\)</span> for definiteness.</p>
+<p>Concluding, if I choose <span class="math inline">\(0&lt;\delta=\min\{a,b/M,1/(2L_P)\}\)</span> then <span class="math inline">\(T\)</span> satisfies the conditions of the contraction mapping principle in <span class="math inline">\(\mathcal B\)</span> and therefore has a unique fixed point <span class="math inline">\(\hat{\bs x}\in \mathcal B\)</span> (if <span class="math inline">\(M=0\)</span> or <span class="math inline">\(L_P=0\)</span>, this choice means that <span class="math inline">\(b/M\)</span> or <span class="math inline">\(1/(2L_P)\)</span> can be taken as <span class="math inline">\(\infty\)</span>).</p>
+<p><span class="math inline">\((iii)\)</span> The final step is to show that it is impossible to have other solutions to the stated problem on the interval <span class="math inline">\([t_0-\delta,t_0+\delta]\)</span>. Indeed, assume that <span class="math inline">\(\bs y\)</span> is such a different solution, which is not in <span class="math inline">\(\mathcal B\)</span>. This means that the graph of <span class="math inline">\(\bs y\)</span> leaves <span class="math inline">\(P\)</span> when <span class="math inline">\(t\in(t_0-\delta,t_0+\delta)\)</span>. This implies that there is first <span class="math inline">\(t^\ast\)</span> for which (it is important that for <span class="math inline">\([t_0,t^\ast]\)</span> the graph of <span class="math inline">\(\bs y\)</span> is still in <span class="math inline">\(P\)</span>) <span class="math display">\[
+{\lvert \bs y(t^\ast)-\bs x_0\rvert }=b\leq M(t^\ast-t_0),
+\]</span> and hence <span class="math display">\[
+t^\ast\geq t_0+\frac{b}{M}\geq t_0+\delta,
+\]</span> that is, <span class="math inline">\(\bs y\)</span> must be in <span class="math inline">\(\mathcal B\)</span>.</p>
+<p>Hence, I found the unique continuous solution to the integral equation <span class="eqref">(<a href="section_2_2.html#eq2:6">2.6</a>)</span>, and therefore, by Lemma <a href="section_2_2.html#l2:1">2.7</a>, the unique solution to the IVP <span class="eqref">(<a href="#eq2:7">2.7</a>)</span>. <span class="qed">&#9632;</span></p></div>
+<h2 id="sec2-4-2"><span class="secnum">2.4.2</span><span class="sectitle">Some remarks and extensions</span></h2>
+<p>Several remarks and extensions can be added to the existence and uniqueness theorem from the previous subsection.</p>
+<p>I start with a simple corollary to the main theorem.</p>
+<div class="thm corollary style-plain" id="corr2:p"><p><span class="thm-head">Corollary 2.43.</span> Consider the IVP <span class="eqref">(<a href="#eq2:7">2.7</a>)</span>, and assume that <span class="math inline">\(\bs f\in\mathcal C^{(p)}(U;\R^k)\)</span> with <span class="math inline">\(U\subseteq J\times X\)</span> open, i.e., the function <span class="math inline">\(\bs f\)</span> is <span class="math inline">\(p\geq 0\)</span> times continuously differentiable with respect to all its arguments. Then any solution to this problem is <span class="math inline">\(p+1\)</span> times continuously differentiable.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-13"><p><span class="thm-head">Exercise 2.13.</span> Prove this corollary.</p>
+</div>
+<p>Note that in Corollary <a href="#corr2:p">2.43</a> for <span class="math inline">\(p\ge1\)</span> the main theorem guarantees that the solution exists; for <span class="math inline">\(p=0\)</span> existence still holds thanks to Peano’s theorem<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
+<div class="thm theorem style-plain" id="th:peano"><p><span class="thm-head">Theorem 2.44 (Peano’s theorem).</span> Consider problem <span class="eqref">(<a href="#eq2:7">2.7</a>)</span> with <span class="math inline">\(U\subseteq J\times X\)</span> open and assume that <span class="math inline">\(\bs f\in\mathcal C(U;\R^k)\)</span>. Then for each <span class="math inline">\((t_0,\bs x_0)\in U\)</span> there exists a solution through this point.</p>
+</div>
+<p>Peano’s theorem guarantees only the existence of solutions. Uniqueness, however, may fail for <span class="math inline">\(\bs f\)</span> just continuous (recall Example <a href="section_1_2.html#ex1:17">1.16</a>).</p>
+<p>The non-uniqueness allowed by Peano’s theorem has a specific structure. Kneser’s theorem<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> states that if <span class="math inline">\(\bs f\)</span> is continuous, then on an interval where all the solutions through <span class="math inline">\((t_0,\bs x_0)\)</span> exist, for each <span class="math inline">\(t\)</span> the set of their values <span class="math inline">\(\bs x(t)\)</span> is compact and connected (the solutions form a “funnel”). The following two exercises illustrate this statement in the scalar case.</p>
+<div class="thm exercise style-definition" id="exercise-2-14"><p><span class="thm-head">Exercise 2.14.</span> Consider the problem <span class="math inline">\(\dot x=x^{1/3}\)</span>, <span class="math inline">\(x(0)=0\)</span> (Example <a href="section_1_2.html#ex1:17">1.16</a>). Describe all the solutions to this problem for <span class="math inline">\(t\geq 0\)</span>, and show that the set of their values at <span class="math inline">\(t=1\)</span> is the interval <span class="math inline">\(\left[-\left(2/3\right)^{3/2},\left(2/3\right)^{3/2}\right]\)</span>. Sketch the funnel.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-15"><p><span class="thm-head">Exercise 2.15.</span> Let <span class="math inline">\(f\)</span> be continuous, and let <span class="math inline">\(x_1\leq x_2\)</span> be two solutions to <span class="math inline">\(\dot x=f(t,x)\)</span> on <span class="math inline">\([t_0,t_1]\)</span> with <span class="math inline">\(x_1(t_0)=x_2(t_0)=x_0\)</span>. Let <span class="math inline">\(x_1(t_1)\leq c\leq x_2(t_1)\)</span>, and assume that there is a solution <span class="math inline">\(y\)</span> defined on <span class="math inline">\([t_0,t_1]\)</span> with <span class="math inline">\(y(t_1)=c\)</span>. Show that there exists a solution <span class="math inline">\(x\)</span> on <span class="math inline">\([t_0,t_1]\)</span> such that <span class="math inline">\(x(t_0)=x_0\)</span> and <span class="math inline">\(x(t_1)=c\)</span>. Conclude that the set of values at <span class="math inline">\(t_1\)</span> of all the solutions through <span class="math inline">\((t_0,x_0)\)</span> defined on <span class="math inline">\([t_0,t_1]\)</span> is an interval. (<em>Hint:</em> Let <span class="math inline">\(\tau\)</span> be the smallest number such that <span class="math inline">\(x_1\leq y\leq x_2\)</span> on <span class="math inline">\([\tau,t_1]\)</span>. If <span class="math inline">\(\tau=t_0\)</span>, then <span class="math inline">\(y(t_0)=x_0\)</span>; otherwise glue <span class="math inline">\(y\)</span> on <span class="math inline">\([\tau,t_1]\)</span> with <span class="math inline">\(x_1\)</span> or <span class="math inline">\(x_2\)</span> on <span class="math inline">\([t_0,\tau]\)</span>, and use Lemma <a href="section_2_2.html#l2:1">2.7</a>.)</p>
+</div>
+<p>An additional argument shows that the condition <span class="math inline">\(\delta&lt;1/L_P\)</span> in the proof of the main theorem is superfluous. In fact, one can always take <span class="math inline">\(\delta=\min\{a,b/M\}\)</span>.</p>
+<div class="thm exercise style-definition" id="exercise-2-16"><p><span class="thm-head">Exercise 2.16.</span> Let <span class="math inline">\(Y\)</span> be the set of continuous functions from <span class="math inline">\([t_0-\delta,t_0+\delta]\)</span> to <span class="math inline">\(\R^k\)</span> with the norm <span class="math display">\[
+{\lVert \bs g\rVert }_w=\max_{{\lvert t-t_0\rvert }\leq \delta}\left\{e^{-2L_P{\lvert t-t_0\rvert }}{\lvert \bs g(t)\rvert }\right\}.
+\]</span></p>
+<p>Show that this norm is equivalent to <span class="math inline">\({\lVert \cdot\rVert }_\infty\)</span>, and hence <span class="math inline">\(Y\)</span> is a Banach space.</p>
+<p>Let <span class="math inline">\(\mathcal B\subseteq Y\)</span> be the set of all functions <span class="math inline">\(\bs x\in Y\)</span> such that <span class="math inline">\({\lvert \bs x(t)-\bs x_0\rvert }\leq b\)</span> for all <span class="math inline">\(t\in[t_0-\delta,t_0+\delta]\)</span>. Use this norm to establish that <span class="math inline">\(T\colon \mathcal B\longrightarrow \mathcal B\)</span> is a contraction on <span class="math inline">\(\mathcal B\)</span> if <span class="math inline">\(\delta=\min\{a,b/M\}\)</span>. (All the constants here are as in the proof of the main theorem.)</p>
+</div>
+<p>In the following I will be using the main theorem in this specific form, assuming that <span class="math inline">\(\delta\)</span> can always be chosen as <span class="math inline">\(\min\{a,b/M\}\)</span>. Note, however, that this estimate for the interval on which the solution exists and is unique is rather conservative.</p>
+<p>Consider, e.g., <span class="math inline">\(\dot x=x^2,\,x(0)=1\)</span>. If I put an upper bound <span class="math inline">\(b\)</span> on <span class="math inline">\({\lvert x-1\rvert }\)</span>, then <span class="math inline">\(M=\max_{x:{\lvert x-1\rvert }\leq b}x^2=(b+1)^2\)</span>, therefore, the solution is defined on <span class="math inline">\({\lvert t\rvert }\leq \delta\)</span>, where <span class="math display">\[
+    \delta=\min\left\{\infty,\frac{b}{(b+1)^2}\right\}=\frac{b}{(b+1)^2}\,,
+    \]</span> which is equal, e.g., to <span class="math inline">\(2/9\)</span> for <span class="math inline">\(b=2\)</span>, i.e., for the solution with the upper bound 3. The exact solution is <span class="math display">\[
+    x(t)=\frac{1}{1-t}\,,
+    \]</span> and reaches the same upper bound at <span class="math inline">\(t=2/3\)</span>. The largest half-length of the interval that the theorem can provide is <span class="math inline">\(1/4\)</span>, attained at <span class="math inline">\(b=1\)</span>. Compare it with the exact solution, which is defined on <span class="math inline">\((-\infty,1)\)</span>.</p>
+<p>The main theorem can be reformulated (rather straightforwardly) for equations and systems of arbitrary order.</p>
+<div class="thm exercise style-definition" id="exercise-2-17"><p><span class="thm-head">Exercise 2.17.</span> Formulate carefully the existence and uniqueness theorems for a <span class="math inline">\(k\)</span>-th order ODE and for a system of <span class="math inline">\(m\)</span> ODE of <span class="math inline">\(k\)</span>-th order.</p>
+</div>
+<p>Comparing the statements of the main theorem and Theorem <a href="#th:peano">2.44</a> immediately raises the question of whether it is possible to find weaker conditions on <span class="math inline">\(\bs f\)</span> to guarantee uniqueness. The answer is positive; here is one known result along these lines. Let <span class="math inline">\(u\mapsto\phi(u)\)</span> be continuous for <span class="math inline">\(u\geq 0\)</span>, <span class="math inline">\(\phi(0)=0\)</span>, <span class="math inline">\(\phi(u)&gt;0\)</span> for <span class="math inline">\(0&lt;u&lt;u_0\)</span>, and <span class="math display">\[
+    \int_0^a\frac{\D u}{\phi(u)}=\infty
+    \]</span> for any <span class="math inline">\(0&lt;a&lt;u_0\)</span>. Assume that the continuous function <span class="math inline">\(\bs f\)</span> is such that <span class="math display">\[
+    {\lvert \bs f(t,\bs x_1)-\bs f(t,\bs x_2)\rvert }\leq \phi({\lvert \bs x_1-\bs x_2\rvert })
+    \]</span> for <span class="math inline">\((t,\bs x_1),\,(t,\bs x_2)\)</span> from <span class="math inline">\(U\)</span>. Then the solution to problem (2.7), which exists by Theorem <a href="#th:peano">2.44</a>, is unique for any <span class="math inline">\((t_0,\bs x_0)\in U\)</span>. This is <em>Osgood’s theorem</em><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. There are infinitely many such functions, e.g., <span class="math display">\[ Lu,\quad Lu{\lvert \ln u\rvert },\quad Lu{\lvert \ln u\rvert }{\bigl\lvert \ln{\lvert \ln u\rvert }\bigr\rvert },\quad\ldots.
+    \]</span> (Note that the first choice here corresponds to the main case, when <span class="math inline">\(\bs f\)</span> is assumed to be Lipschitz.)</p>
+<p>From the point of view of applications, the right-hand side <span class="math inline">\(\bs f\)</span> is often not continuous. For example, in <em>control theory</em> it is natural to consider an equation of the form <span class="math display">\[
+\dot x=f(t,x)+u(t)\eqqcolon g(t,x),
+\]</span> where <span class="math inline">\(u\)</span> is a control function, which can take only two values, say, <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span>. In this case the right-hand side of the differential equation is not even continuous, and it is not immediately clear what to call a solution. A usual approach is to replace the ODE with the corresponding integral equation <span class="math display">\[
+x(t)=x_0+\int_{t_0}^tg(\tau,x(\tau))\D \tau,
+\]</span> and call a continuous solution to the integral equation a “solution” to the original ODE (it does not have to be differentiable at <em>each</em> point anymore). It can be proved that if <span class="math inline">\(g\)</span> is Lipschitz continuous with respect to the second argument and, for each fixed <span class="math inline">\(x\)</span>, <span class="math inline">\(g\)</span> is <em>piecewise</em> continuous as a function of <span class="math inline">\(t\)</span>, with discontinuities in <span class="math inline">\(t\)</span> at points independent of <span class="math inline">\(x\)</span>, then the solution to the IVP (understood as a continuous solution to the integral equation) exists and is unique. It is possible to make further generalizations, but this would require the notion of <em>Lebesgue’s integral</em> (solutions in this sense are called <em>Carathéodory solutions</em>).</p>
+<p>The following exercises check the basic understanding of the main theorem; do not skip them even if they look simple.</p>
+<div class="thm exercise style-definition" id="exercise-2-18"><p><span class="thm-head">Exercise 2.18.</span> For which initial conditions does there exist a unique solution to <span class="math display">\[
+(a)\quad \ddot x=\tan x+\sqrt[3]{t},\quad (b)\quad (t+1)\ddot x=x+\sqrt{x},\quad (c)\quad\ddot x-x\dddot x=\sqrt[5]{\dot x-t}?
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-19"><p><span class="thm-head">Exercise 2.19.</span> For which <span class="math inline">\(n\)</span> can the equation <span class="math display">\[
+x^{(n)}=f(t,x),
+\]</span> where <span class="math inline">\(f\in \mathcal C^{(1)}\)</span>, have solutions <span class="math inline">\(x_1(t)=t,\,x_2(t)=t+t^4\)</span>?</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-20"><p><span class="thm-head">Exercise 2.20.</span> How many derivatives do the solutions to the following equations have in a neighborhood of the origin? <span class="math display">\[
+(a)\quad \dot x=t+x^{7/3},\quad (b)\quad \dddot x=x-t\sqrt[3]{t}.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-21"><p><span class="thm-head">Exercise 2.21.</span> For which nonnegative <span class="math inline">\(a\)</span> is the uniqueness of solutions to <span class="math inline">\(\dot x={\lvert x\rvert }^a\)</span> violated, and at which points?</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-22"><p><span class="thm-head">Exercise 2.22.</span> Can the graphs of two solutions to <span class="math inline">\(\dot x=t+x^2\)</span> cross at some point <span class="math inline">\((t_0,x_0)\)</span> in the <span class="math inline">\((t,x)\)</span>-plane? Can the graphs of two solutions to <span class="math inline">\(\ddot x=t+x^2\)</span> cross at some point <span class="math inline">\((t_0,x_0)\)</span> in the <span class="math inline">\((t,x)\)</span>-plane? Can the graphs of two solutions to <span class="math inline">\(\ddot x=t+x^2\)</span> be tangent to each other at some point <span class="math inline">\((t_0,x_0)\)</span>?</p>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This central theorem is often called the <em>Picard–Lindelöf theorem</em>, after Émile Picard, who developed the method of successive approximations around 1890, and Ernst Lindelöf, who in 1894 gave a concise exposition of Picard’s method for ordinary differential equations. In the French literature it is usually called the <em>Cauchy–Lipschitz theorem</em>, after Augustin-Louis Cauchy, who proved the existence and uniqueness for continuously differentiable right-hand sides in his lectures in the 1820s, and Rudolf Lipschitz, who introduced the condition that now bears his name. Cauchy was also the first to publish a proof of existence and uniqueness, in the 1830s, albeit for analytic right-hand sides.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>After Giuseppe Peano, who proved it for a single equation in 1886 and for systems in 1890.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>After Hellmuth Kneser, a student of David Hilbert, who proved it in 1923 in a paper with the telling title “Über die Lösungen eines Systems gewöhnlicher Differentialgleichungen, das der Lipschitzschen Bedingung nicht genügt” (On the solutions of a system of ordinary differential equations that does not satisfy the Lipschitz condition).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>If the reader wants to see proofs of Peano’s theorem, Osgood’s theorem, and many other facts, which are difficult to find anywhere else, I strongly recommend Philip Hartman, Ordinary differential equations.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_2_3.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">2.3</span> Auxiliary facts from analysis</span></a><a class="next" href="section_2_5.html"><span class="dir">Next</span><span class="pt"><span class="pnum">2.5</span> On extending solutions</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

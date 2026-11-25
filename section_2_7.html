@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 2.7: Back to dynamical systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout single">
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">2.7</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Back to dynamical systems</h1>
+    <p class="byline">Chapter 2 · Fundamental theorems</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<article class="notes">
+<p>At the beginning of this chapter I showed that every smooth dynamical system <span class="math inline">\(\{\R,X,\varphi^t\}\)</span> defines, through its phase velocity <span class="eqref">(<a href="section_2_1.html#eq2:3">2.3</a>)</span>, an autonomous system of ODE of the form <span class="eqref">(<a href="section_2_6.html#eq2:9">2.8</a>)</span>, where now <span class="math inline">\(\bs x(t)\in X\)</span>, and I asked whether the converse is true: does every smooth vector field generate a smooth dynamical system? Now I have all the tools to answer this question.</p>
+<p>Let <span class="math inline">\(X\subseteq\R^k\)</span> be open and <span class="math inline">\(\bs f\in\mathcal C^{(1)}(X;\R^k)\)</span>. Then <span class="math inline">\(\bs f\)</span> is locally Lipschitz (Lemma <a href="section_2_4.html#l2:C1Lip">2.39</a>), and hence for every <span class="math inline">\(\bs x_0\in X\)</span> problem <span class="eqref">(<a href="section_2_6.html#eq2:9">2.8</a>)</span> with <span class="math inline">\(\bs x(0)=\bs x_0\)</span> has a unique maximal solution <span class="math inline">\(t\mapsto\bs\phi(t,\bs x_0)\)</span>, defined on an open interval <span class="math inline">\(I(\bs x_0)\ni 0\)</span> (Theorem <a href="section_2_5.html#th2:maximal">2.47</a>). For an autonomous system it is enough to consider the initial time <span class="math inline">\(t_0=0\)</span>, since all other solutions are obtained by translations in <span class="math inline">\(t\)</span> (Exercise <a href="section_1_2.html#exe:1:2">1.2</a>). Define <span class="math display">\[
+\varphi^t\bs x_0\coloneqq\bs\phi(t,\bs x_0),\quad (t,\bs x_0)\in D=\{(t,\bs x_0)\colon \bs x_0\in X,\ t\in I(\bs x_0)\}.
+\]</span> By Theorem <a href="section_2_6.html#th2:flowcont">2.56</a> the set <span class="math inline">\(D\)</span> is open and the map <span class="math inline">\(\varphi\colon(t,\bs x_0)\mapsto\varphi^t\bs x_0\)</span> is continuous on <span class="math inline">\(D\)</span>; moreover, by Theorem <a href="section_2_6.html#th2:diffdep">2.59</a>, <span class="math inline">\(\varphi\in\mathcal C^{(1)}(D;X)\)</span>. By construction, <span class="math inline">\(\varphi^0\bs x_0=\bs x_0\)</span>, i.e., <span class="eqref">(<a href="section_2_1.html#eq2:1">2.1</a>)</span> holds, and the phase velocity of <span class="math inline">\(\varphi^t\)</span> is exactly <span class="math inline">\(\bs f\)</span>.</p>
+<p>It remains to check the group property <span class="eqref">(<a href="section_2_1.html#eq2:2">2.2</a>)</span>. Let <span class="math inline">\(t_1\in I(\bs x_0)\)</span> and consider <span class="math display">\[
+\bs\psi_1(t)=\bs\phi(t,\varphi^{t_1}\bs x_0),\quad \bs\psi_2(t)=\bs\phi(t+t_1,\bs x_0).
+\]</span> Both are maximal solutions to <span class="eqref">(<a href="section_2_6.html#eq2:9">2.8</a>)</span> (a time shift of a maximal solution is clearly maximal) with the same value <span class="math inline">\(\varphi^{t_1}\bs x_0\)</span> at <span class="math inline">\(t=0\)</span>, hence, by Lemma <a href="section_2_5.html#l2:globuniq">2.45</a>, they coincide and have the same maximal interval, i.e., <span class="math inline">\(I(\varphi^{t_1}\bs x_0)=I(\bs x_0)-t_1\)</span>. Therefore, if one side of <span class="math display">\[
+\varphi^{t_2+t_1}\bs x_0=\varphi^{t_2}\varphi^{t_1}\bs x_0
+\]</span> is defined, so is the other, and they are equal; the second equality in <span class="eqref">(<a href="section_2_1.html#eq2:2">2.2</a>)</span> follows since <span class="math inline">\(t_1+t_2=t_2+t_1\)</span>.</p>
+<p>Summarizing, a <span class="math inline">\(\mathcal C^{(1)}\)</span> vector field always generates a <em>local</em> smooth dynamical system: the flow <span class="math inline">\(\varphi^t\)</span> satisfies <span class="eqref">(<a href="section_2_1.html#eq2:1">2.1</a>)</span> and <span class="eqref">(<a href="section_2_1.html#eq2:2">2.2</a>)</span> whenever the corresponding expressions are defined. If all the solutions to <span class="eqref">(<a href="section_2_6.html#eq2:9">2.8</a>)</span> are global (e.g., under the conditions of Corollary <a href="section_2_6.html#corr:2:37">2.54</a>, or if all solutions stay in compact subsets of <span class="math inline">\(X\)</span>), then <span class="math inline">\(D=\R\times X\)</span> and <span class="eqref">(<a href="section_2_6.html#eq2:9">2.8</a>)</span> defines a smooth dynamical system <span class="math inline">\(\{\R,X,\varphi^t\}\)</span> in the sense of Section <a href="section_2_1.html#top">2.1</a>. Finally, the time reparametrization <span class="eqref">(<a href="section_2_6.html#eq2:resc">2.9</a>)</span> shows that, at the price of changing the speed of motion along the orbits, but not the orbits themselves, every <span class="math inline">\(\mathcal C^{(1)}\)</span> vector field can be turned into one that generates a global flow.</p>
+<p>Thus, in the finite-dimensional smooth setting, the two points of view on deterministic processes, via the flow <span class="math inline">\(\{\varphi^t\}\)</span> and via the vector field <span class="math inline">\(\bs f\)</span>, are equivalent, and from now on I will freely switch between them.</p>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_2_6.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">2.6</span> Dependence on the parameters and initial conditions</span></a><a class="next" href="section_2_8.html"><span class="dir">Next</span><span class="pt"><span class="pnum">2.8</span> Appendix</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

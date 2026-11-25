@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 2.8: Appendix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout">
+<aside class="sidetoc" aria-label="On this page">
+  <p class="sidetoc-title">Section 2.8</p>
+  <ol>
+<li><a href="#sec2-8-1"><span class="tnum">2.8.1</span><span class="ttl">Inverse and implicit function theorems</span></a></li>
+  </ol>
+</aside>
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">2.8</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Appendix</h1>
+    <p class="byline">Chapter 2 · Fundamental theorems</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<nav class="toc" aria-label="Contents">
+  <p class="toc-title">In this section</p>
+  <ol>
+<li><a href="#sec2-8-1"><span class="tnum">2.8.1</span><span class="ttl">Inverse and implicit function theorems</span></a></li>
+  </ol>
+</nav>
+<article class="notes">
+<h2 id="sec2-8-1"><span class="secnum">2.8.1</span><span class="sectitle">Inverse and implicit function theorems</span></h2>
+<p>Several times in this course I refer to either <em>inverse</em> or <em>implicit function</em> theorems. In this appendix I state these theorems and also show how they are connected to the theory of ODE.</p>
+<p>Consider the following system of <span class="math inline">\(n\)</span> nonlinear equations with <span class="math inline">\(n\)</span> unknowns: <span class="math display">\[
+\bs x=\bs f(\bs y),\quad \bs x,\bs y\in\R^n,
+\]</span> and assume that <span class="math inline">\(\bs f\in\mathcal C^{(1)}\)</span> in some neighborhood of the point <span class="math inline">\(\bs a\in\R^n\)</span>, <span class="math inline">\(\bs b=\bs f(\bs a)\)</span>. The inverse function theorem deals with the situation when the unknown <span class="math inline">\(\bs y\)</span> can be expressed locally as a function of <span class="math inline">\(\bs x\)</span>: <span class="math display">\[
+\bs y=\bs g(\bs x),\quad \bs a=\bs g(\bs b).
+\]</span> The function <span class="math inline">\(\bs g\)</span> is called the inverse function to <span class="math inline">\(\bs f\)</span>, and the existence of such function is equivalent to saying that <span class="math inline">\(\bs f\)</span> is a bijection (one-to-one and onto) from some neighborhood <span class="math inline">\(U\)</span> of <span class="math inline">\(\bs a\)</span> to some neighborhood <span class="math inline">\(W\)</span> of <span class="math inline">\(\bs b\)</span>.</p>
+<p>Heuristically, using Taylor’s formula for <span class="math inline">\(\bs f\)</span>: <span class="math display">\[
+\bs f(\bs y)=\bs f(\bs a)+\bs f'(\bs a)(\bs y-\bs a)+o({\lvert \bs y-\bs a\rvert }),
+\]</span> where <span class="math display">\[
+\bs f'(\bs a)=\begin{bmatrix}
+                \frac{\partial f_1}{\partial y_1}(\bs a) &amp; \cdots &amp; \frac{\partial f_1}{\partial y_n}(\bs a) \\
+                \vdots &amp; \ddots &amp; \vdots \\
+                \frac{\partial f_n}{\partial y_1}(\bs a) &amp; \cdots &amp; \frac{\partial f_n}{\partial y_n}(\bs a) \\
+              \end{bmatrix}
+\]</span> is the <em>Jacobi matrix</em> of <span class="math inline">\(\bs f\)</span> evaluated at <span class="math inline">\(\bs a\)</span>. Dropping the term <span class="math inline">\(o({\lvert \bs y-\bs a\rvert })\)</span>, I get <span class="math display">\[
+\bs x-\bs b=\bs f'(\bs a)(\bs y-\bs a),
+\]</span> which is a linear system and therefore has a unique solution if and only if <span class="math inline">\(\det \bs f'(\bs a)\neq 0\)</span>. It turns out that exactly the same condition is sufficient for <span class="math inline">\(\bs f\)</span> to be a bijection in <span class="math inline">\(U\)</span>.</p>
+<div class="thm theorem style-plain" id="th2:inverse"><p><span class="thm-head">Theorem 2.61.</span> Let <span class="math inline">\(\bs a,\bs b\in \R^n\)</span> and <span class="math inline">\(\bs f\in\mathcal C^{(1)}\)</span> in some neighborhood of <span class="math inline">\(\bs a\)</span>, <span class="math inline">\(\bs f(\bs a)=\bs b\)</span>. Assume that <span class="math inline">\(\det \bs f'(\bs a)\neq 0\)</span>. Then there exist open <span class="math inline">\(U,W\subseteq \R^n\)</span>, <span class="math inline">\(\bs a\in U,\,\bs b\in W\)</span>, such that</p>
+<p><span class="math inline">\((a)\)</span> <span class="math inline">\(\bs f\)</span> is a bijection from <span class="math inline">\(U\)</span> to <span class="math inline">\(W\)</span>;</p>
+<p><span class="math inline">\((b)\)</span> The inverse function <span class="math inline">\(\bs g\in\mathcal C^{(1)}(W;U)\)</span>, and <span class="math inline">\(\bs g'(\bs b)=\bs f'(\bs a)^{-1}\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-33"><p><span class="thm-head">Exercise 2.33.</span> Prove part <span class="math inline">\((a)\)</span> of Theorem <a href="#th2:inverse">2.61</a>. (<em>Hint</em>: Assume without loss of generality that <span class="math inline">\(\bs a=\bs b=0\)</span>, let <span class="math inline">\(B=\bs f'(0)\)</span>, and let <span class="math inline">\(\bs h(\bs y)=\bs f(\bs y)-B\bs y\)</span>, so that the equation <span class="math inline">\(\bs x=\bs f(\bs y)\)</span> is equivalent to <span class="math inline">\(\bs y=T\bs y\)</span>, where <span class="math inline">\(T\colon \bs y\mapsto B^{-1}(\bs x-\bs h(\bs y))\)</span>. Since <span class="math inline">\(\bs h'(\bs y)=\bs f'(\bs y)-B\)</span> is continuous and <span class="math inline">\(\bs h'(0)=0\)</span>, there is <span class="math inline">\(r&gt;0\)</span> such that <span class="math inline">\({\lvert B^{-1}(\bs h(\bs y_1)-\bs h(\bs y_2))\rvert }\leq\frac12{\lvert \bs y_1-\bs y_2\rvert }\)</span> for <span class="math inline">\({\lvert \bs y_1\rvert },{\lvert \bs y_2\rvert }\leq r\)</span> (compare with the proof of Lemma <a href="section_2_4.html#l2:C1Lip">2.39</a>). Show that if <span class="math inline">\({\lvert B^{-1}\bs x\rvert }\leq r/2\)</span>, then <span class="math inline">\(T\)</span> maps the closed ball <span class="math inline">\(\{{\lvert \bs y\rvert }\leq r\}\)</span> into itself, and apply Theorem <a href="section_2_3.html#th2:contraction">2.34</a>.)</p>
+</div>
+<p>Now consider the system <span class="math display">\[
+\bs F(\bs x,\bs y)=0,\quad \bs F\colon \R^{n+m}\longrightarrow \R^m,\, \bs x\in\R^n,\,\bs y\in \R^m.
+\]</span> I need to identify the conditions under which the variables <span class="math inline">\(\bs y\)</span> can be uniquely expressed through <span class="math inline">\(\bs x\)</span>: <span class="math display">\[
+\bs y=\bs g(\bs x),
+\]</span> or <span class="math display">\[
+\bs F(\bs x,\bs g(\bs x))=0.
+\]</span></p>
+<div class="thm theorem style-plain" id="th2:implicit"><p><span class="thm-head">Theorem 2.62.</span> Assume that <span class="math inline">\(\bs a\in\R^n,\,\bs b\in \R^m\)</span> and <span class="math inline">\(\bs F(\bs a,\bs b)=0\)</span>. Assume that <span class="math inline">\(\bs F\in\mathcal C^{(1)}\)</span> in some neighborhood of the point <span class="math inline">\((\bs a,\bs b)\)</span> and <span class="math inline">\(\det \bs F_{\bs y}(\bs a,\bs b)\neq 0 \)</span>, where <span class="math inline">\(\bs F_{\bs y}(\bs a,\bs b)\)</span> is the Jacobi matrix of <span class="math inline">\(\bs F\)</span> with respect to <span class="math inline">\(\bs y\)</span>. Then there exist open <span class="math inline">\(U\subseteq \R^n\)</span>, <span class="math inline">\(W\subseteq \R^m\)</span>, <span class="math inline">\(\bs a\in U,\,\bs b\in W\)</span>, such that</p>
+<p><span class="math inline">\((a)\)</span> There exists a unique <span class="math inline">\(\bs g\colon U\longrightarrow W\)</span>, which satisfies <span class="math display">\[
+\bs F(\bs x,\bs g(\bs x))\equiv 0,\quad \bs x\in U;
+\]</span></p>
+<p><span class="math inline">\((b)\)</span> <span class="math inline">\(\bs g\in\mathcal C^{(1)}(U;W)\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-34"><p><span class="thm-head">Exercise 2.34.</span> Prove Theorem <a href="#th2:implicit">2.62</a>. (<em>Hint</em>: Apply Theorem <a href="#th2:inverse">2.61</a> to the map <span class="math inline">\((\bs x,\bs y)\mapsto(\bs x,\bs F(\bs x,\bs y))\)</span> from <span class="math inline">\(\R^{n+m}\)</span> to itself; its Jacobi matrix is block triangular with determinant <span class="math inline">\(\det\bs F_{\bs y}\)</span>.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-35"><p><span class="thm-head">Exercise 2.35.</span> Prove Theorem <a href="#th2:inverse">2.61</a> from Theorem <a href="#th2:implicit">2.62</a>.</p>
+</div>
+<p>The stated theorems and exercises show that implicit and inverse function theorems are equivalent, and their proof can be performed by the same device that I used to prove the existence and uniqueness theorem for ODE. These facts imply that there is a strong connection between these theorems and the theory of differential equations<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In particular, I can even prove (a version of) the implicit function theorem using my main result on ODE.</p>
+<div class="thm theorem style-plain" id="th2:implicitODE"><p><span class="thm-head">Theorem 2.63.</span> Let <span class="math inline">\(U\subseteq \R^{k+1}\)</span> be open and <span class="math inline">\(\bs F\in\mathcal C^{(2)}(U;\R^k)\)</span>. Assume that <span class="math inline">\(\bs F(t_0,\bs x_0)=0\)</span>, <span class="math inline">\((t_0,\bs x_0)\in U\)</span>, and the Jacobi matrix <span class="math inline">\(\bs F_{\bs x}(t_0,\bs x_0)\)</span> is nonsingular. Then there exist an open interval <span class="math inline">\(I\coloneqq(t_0-\delta,t_0+\delta)\)</span> and <span class="math inline">\(\bs\phi\in \mathcal C^{(1)}(I;\R^k)\)</span> such that <span class="math inline">\(\bs \phi(t_0)=\bs x_0\)</span> and <span class="math display">\[
+\bs F(t,\bs \phi(t))\equiv 0,\quad t\in I.
+\]</span></p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Since <span class="math inline">\(\det\bs F_{\bs x}\)</span> is continuous, there exists an open neighborhood <span class="math inline">\(U_0\subseteq U\)</span> of <span class="math inline">\((t_0,\bs x_0)\)</span> in which <span class="math inline">\(\bs F_{\bs x}\)</span> is nonsingular. Hence I can define <span class="math display">\[
+\bs f(t,\bs x)=-\bs F_{\bs x}(t,\bs x)^{-1}\bs F_t(t,\bs x),\quad (t,\bs x)\in U_0.
+\]</span> The entries of the inverse matrix are rational functions of the entries of <span class="math inline">\(\bs F_{\bs x}\)</span> (Cramer’s rule), and since <span class="math inline">\(\bs F\in\mathcal C^{(2)}\)</span>, I get <span class="math inline">\(\bs f\in\mathcal C^{(1)}(U_0;\R^k)\)</span>; hence <span class="math inline">\(\bs f\)</span> is locally Lipschitz in <span class="math inline">\(\bs x\)</span> (Lemma <a href="section_2_4.html#l2:C1Lip">2.39</a>). Consider the ODE <span class="math display">\[
+\dot{\bs x}=\bs f(t,\bs x),\quad \bs x(t_0)=\bs x_0.
+\]</span> By Theorem <a href="section_2_4.html#th2:PL">2.42</a>, there exists a unique solution <span class="math inline">\(\bs\phi\)</span> to this problem on some interval <span class="math inline">\(I=(t_0-\delta,t_0+\delta)\)</span>, whose graph lies in <span class="math inline">\(U_0\)</span>. Note that <span class="math inline">\(\bs F(t_0,\bs\phi(t_0))=\bs F(t_0,\bs x_0)=0\)</span> and, by the chain rule, <span class="math display">\[
+\frac{\D}{\D t}\bs F(t,\bs\phi(t))=\bs F_t(t,\bs\phi(t))+\bs F_{\bs x}(t,\bs\phi(t))\,\dot{\bs\phi}(t)=\bs F_t-\bs F_{\bs x}\bs F_{\bs x}^{-1}\bs F_t=0,
+\]</span> therefore <span class="math display">\[
+\bs F(t,\bs\phi(t))\equiv 0,\quad t\in I.
+\]</span> <span class="qed">&#9632;</span></p></div>
+<div class="thm remark style-remark" id="remark-2-64"><p><span class="thm-head">Remark 2.64.</span> The assumption <span class="math inline">\(\bs F\in\mathcal C^{(2)}\)</span> is used only to make the right-hand side <span class="math inline">\(\bs f\)</span> continuously differentiable, and hence locally Lipschitz. Actually, it can be shown that <span class="math inline">\(\bs F\in\mathcal C^{(1)}(U;\R^k)\)</span> is enough to prove the theorem.</p>
+</div>
+<div class="thm remark style-remark" id="remark-2-65"><p><span class="thm-head">Remark 2.65.</span> I showed that the implicit function theorem is a consequence of the existence and uniqueness theorem for ODE. The converse is also true, but I will postpone the discussion of this fact until the end of the next chapter.</p>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Much more can be found in Krantz, S. G., &amp; Parks, H. R. (2012). <em>The implicit function theorem: history, theory, and applications</em>. Springer Science &amp; Business Media.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_2_7.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">2.7</span> Back to dynamical systems</span></a><span></span></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

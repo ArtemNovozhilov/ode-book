@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 1.3: Analytical methods for solving ODE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout">
+<aside class="sidetoc" aria-label="On this page">
+  <p class="sidetoc-title">Section 1.3</p>
+  <ol>
+<li><a href="#sec1-3-1"><span class="tnum">1.3.1</span><span class="ttl">Separable equations</span></a></li>
+<li><a href="#sec1-3-2"><span class="tnum">1.3.2</span><span class="ttl">Linear equations</span></a></li>
+<li><a href="#sec1-3-3"><span class="tnum">1.3.3</span><span class="ttl">Exact equations</span></a></li>
+<li><a href="#sec1-3-4"><span class="tnum">1.3.4</span><span class="ttl">Substitutions</span></a></li>
+<li><a href="#sec1-3-5"><span class="tnum">1.3.5</span><span class="ttl">Liouville’s theorem</span></a></li>
+  </ol>
+</aside>
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">1.3</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>Analytical methods for solving ODE</h1>
+    <p class="byline">Chapter 1 · Introduction</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<nav class="toc" aria-label="Contents">
+  <p class="toc-title">In this section</p>
+  <ol>
+<li><a href="#sec1-3-1"><span class="tnum">1.3.1</span><span class="ttl">Separable equations</span></a></li>
+<li><a href="#sec1-3-2"><span class="tnum">1.3.2</span><span class="ttl">Linear equations</span></a></li>
+<li><a href="#sec1-3-3"><span class="tnum">1.3.3</span><span class="ttl">Exact equations</span></a></li>
+<li><a href="#sec1-3-4"><span class="tnum">1.3.4</span><span class="ttl">Substitutions</span></a></li>
+<li><a href="#sec1-3-5"><span class="tnum">1.3.5</span><span class="ttl">Liouville’s theorem</span></a></li>
+  </ol>
+</nav>
+<article class="notes">
+<h2 id="sec1-3-1"><span class="secnum">1.3.1</span><span class="sectitle">Separable equations</span></h2>
+<div class="thm definition style-plain" id="definition-1-21"><p><span class="thm-head">Definition 1.21.</span> A first-order ordinary differential equation of the form <span class="math display">\[
+\dot x=f_1(t)f_2(x),\quad t\in J\subseteq \R,\quad x(t)\in X\subseteq \R
+\]</span> is called separable.</p>
+</div>
+<p>From the previous section, the solution to a separable equation is given by <span class="math display">\[
+\int\frac{\D x}{f_2(x)}=\int f_1(t)\D t,
+\]</span> if <span class="math inline">\(f_2(x)\neq 0\)</span>. If <span class="math inline">\(\hat{x}\)</span> is such that <span class="math inline">\(f_2(\hat{x})=0\)</span> then there is also the solution <span class="math inline">\(t\mapsto \hat{x}\)</span>. The existence and uniqueness of solutions are determined by the properties of <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> (Lemma <a href="section_1_2.html#l1:16">1.19</a>).</p>
+<div class="thm exercise style-definition" id="exercise-1-11"><p><span class="thm-head">Exercise 1.11.</span> Solve the following differential equations: <span class="math display">\[
+(a)\quad \dot x=x^3,\quad (b)\quad \dot x=x(1-x).
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-12"><p><span class="thm-head">Exercise 1.12.</span> Investigate uniqueness of the solutions to the differential equation <span class="math display">\[
+\dot x=\begin{cases}
+-t\sqrt{{\lvert x\rvert }},&amp;x\geq 0,\\
+t\sqrt{{\lvert x\rvert }},&amp;x\leq 0.
+\end{cases}
+\]</span> Show that the initial value problem <span class="math inline">\(x(0)=x_0\)</span> has a unique <em>global solution</em> (the solution is called <em>global</em> if it is defined for all <span class="math inline">\(t\in\R\)</span>) for any <span class="math inline">\(x_0\in \R\)</span>. However, show that the global solutions still intersect! (<em>Hint:</em> Note that if <span class="math inline">\(t\mapsto x(t)\)</span> is a solution so are <span class="math inline">\(t\mapsto -x(t)\)</span> and <span class="math inline">\(t\mapsto x(-t)\)</span>, so it suffices to consider <span class="math inline">\(x_0\geq 0\)</span> and <span class="math inline">\(t\geq 0\)</span>).</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-13"><p><span class="thm-head">Exercise 1.13.</span> Consider the free fall with air resistance modeled by <span class="math display">\[
+\ddot x=\eta \dot x^2-g,\quad \eta&gt;0.
+\]</span> Solve this equation. (<em>Hint:</em> Introduce the velocity <span class="math inline">\(v=\dot x\)</span> as a new dependent variable.) Is there a limit to the speed the object can attain? If yes, find it.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-14"><p><span class="thm-head">Exercise 1.14.</span> (Before solving this problem, you should solve the previous one.) A parachutist jumps from 1.5 km and opens his parachute at 0.5 km. How long was he falling before opening his parachute? Take into account that the maximal speed of a falling human body in air of normal density is 50 m/s (meters per second).</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-15"><p><span class="thm-head">Exercise 1.15.</span> A body cooled down from <span class="math inline">\(100^\circ\)</span> to <span class="math inline">\(60^\circ\)</span> in 10 minutes (assume all the units in Celsius). The temperature of the surrounding air is constant and equal to <span class="math inline">\(20^\circ\)</span>. How long will it take for the body to cool down to <span class="math inline">\(25^\circ\)</span>? (Assume that the rate of cooling is proportional to the difference between the body temperature and the temperature of the environment, which is known as <em>Newton’s cooling law</em>.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-16"><p><span class="thm-head">Exercise 1.16.</span> Find the curves <span class="math inline">\(t\mapsto x(t)\)</span> with the following property: for every point of the curve, the triangle bounded by the <span class="math inline">\(t\)</span>-axis, the tangent line to the curve at this point, and the vertical line through this point has constant area <span class="math inline">\(a^2\)</span>. (Consider two cases <span class="math inline">\(\dot x&gt;0\)</span> and <span class="math inline">\(\dot x&lt;0\)</span>.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-17"><p><span class="thm-head">Exercise 1.17.</span> It took 30 days for some radioactive substance to decrease to <span class="math inline">\(50\%\)</span> of its initial amount. How long will it take for this radioactive substance to decrease to <span class="math inline">\(1\%\)</span> of its initial amount? (Use the <em>law of radioactive decay</em> that says that the rate of decay is proportional to the available amount.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-18"><p><span class="thm-head">Exercise 1.18.</span> Show that every integral curve of the equation <span class="math display">\[
+\dot x=\sqrt[3]{\frac{x^2+1}{t^4+1}}
+\]</span> has two horizontal asymptotes.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-19"><p><span class="thm-head">Exercise 1.19.</span> For which <span class="math inline">\(a\)</span> is each solution to <span class="math display">\[
+\dot x={\lvert x\rvert }^a,
+\]</span> is defined globally (i.e., for all <span class="math inline">\(t\in\R\)</span>)?</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-20"><p><span class="thm-head">Exercise 1.20.</span> Solve the differential equation describing the shape <span class="math inline">\(y\)</span> of a hanging chain suspended at two points (this curve is called a <em>catenary</em>): <span class="math display">\[
+y''=a\sqrt{1+(y')^2}\,,\quad a&gt;0.
+\]</span> For simplicity assume that the coordinate system is chosen such that <span class="math inline">\(y'(0)=0\)</span>, i.e., the slope of the catenary at the point <span class="math inline">\(x=0\)</span> is zero.</p>
+</div>
+<h2 id="sec1-3-2"><span class="secnum">1.3.2</span><span class="sectitle">Linear equations</span></h2>
+<div class="thm definition style-plain" id="definition-1-22"><p><span class="thm-head">Definition 1.22.</span> A first-order ordinary differential equation of the form <span class="math display">\[
+\dot x+p(t)x=q(t),\quad p,q\in\mathcal C(J)
+\]</span> is called linear. If <span class="math inline">\(q\equiv 0\)</span> then it is called linear homogeneous, whereas in the opposite case it is called nonhomogeneous.</p>
+</div>
+<div class="thm lemma style-plain" id="lemma-1-23"><p><span class="thm-head">Lemma 1.23.</span> Assume that <span class="math inline">\(p,q\in\mathcal C(J)\)</span> in the linear ODE. Then there exists a unique solution to the IVP with <span class="math inline">\(x(t_0)=x_0,\,t_0\in J\)</span> defined on the whole interval <span class="math inline">\(J\)</span>.</p>
+</div>
+<p>I will give a constructive proof of this lemma by actually presenting the solution by the method called the <em>variation of the parameter</em> or <em>variation of the constant</em>.</p>
+<div class="proof"><p><span class="thm-head">Proof.</span> First, consider the homogeneous linear equation <span class="math display">\[
+\dot x=-p(t)x,
+\]</span> which is separable and can be integrated to get <span class="math display">\[
+x(t)=x_0e^{-\int_{t_0}^t p(\tau)\D \tau}.
+\]</span></p>
+<p>Now let us look for the solution to the full nonhomogeneous linear ODE in the form <span class="math display" id="eq1:3:2">\begin{equation}
+x(t)=C(t)e^{-\int_{t_0}^t p(\tau)\D \tau},
+\tag{1.8}\end{equation}</span> where <span class="math inline">\(t\mapsto C(t)\)</span> is some unknown function of <span class="math inline">\(t\)</span> (compare with the above solution to the homogeneous equation). Note that there is no restriction on the form of <span class="math inline">\(x\)</span> in <span class="eqref">(<a href="#eq1:3:2">1.8</a>)</span> since <span class="math inline">\(C\)</span> is <em>arbitrary</em> and exponential never vanishes, so I just picked a form convenient for the computations without losing any generality. Next I show that it will be a solution if and only if <span class="math display">\[
+C'(t)=q(t)e^{\int_{t_0}^t p(\tau)\D \tau}.
+\]</span></p>
+<p>Indeed, assume <span class="eqref">(<a href="#eq1:3:2">1.8</a>)</span> is a solution. After plugging this expression into the equation I get <span class="math display">\[
+C'(t)e^{-\int_{t_0}^t p(\tau)\D \tau}-p(t)C(t)e^{-\int_{t_0}^t p(\tau)\D \tau}+p(t)C(t)e^{-\int_{t_0}^t p(\tau)\D \tau}=q(t)\Longleftrightarrow C'(t)=q(t)e^{\int_{t_0}^t p(\tau)\D \tau}.
+\]</span> Conversely, assume that <span class="math inline">\(C'(t)=q(t)e^{\int_{t_0}^t p(\tau)\D \tau}\)</span>, then <span class="eqref">(<a href="#eq1:3:2">1.8</a>)</span> is a solution by direct substitution.</p>
+<p>Clearly the condition <span class="math inline">\(x(t_0)=x_0\)</span> and assumption <span class="eqref">(<a href="#eq1:3:2">1.8</a>)</span> are equivalent to <span class="math inline">\(C(t_0)=x_0\)</span>. Therefore <span class="math display">\[
+C(t)=x_0+\int_{t_0}^t q(\tau)e^{\int_{t_0}^\tau p(\xi)\D \xi}\D\tau.
+\]</span></p>
+<p>Putting everything together I conclude that <span class="math display">\[
+x(t)=x_0e^{-\int_{t_0}^{t} p(\tau)\D \tau}+e^{-\int_{t_0}^{t} p(\tau)\D \tau}\int_{t_0}^t q(\tau)e^{\int_{t_0}^{\tau} p(\xi)\D \xi}\D \tau,
+\]</span> is the unique solution to my IVP defined on the whole interval <span class="math inline">\(J\)</span>. <span class="qed">&#9632;</span></p></div>
+<div class="thm remark style-remark" id="remark-1-24"><p><span class="thm-head">Remark 1.24.</span> Another way to approach first-order linear equations is to use the so-called <em>integrating factor</em> <span class="math inline">\(\mu\)</span>. Specifically, note that if I define <span class="math display">\[
+\mu(t)\coloneqq\exp\int_{t_0}^t p(\tau)\D \tau,
+\]</span> then my equation can be written as <span class="math display">\[
+(\mu(t)x(t))'=q(t)\mu(t),
+\]</span> from which the same general solution immediately follows by integrating.</p>
+</div>
+<div class="thm remark style-remark" id="remark-1-25"><p><span class="thm-head">Remark 1.25.</span> The solution to the linear ODE that I found above is often written with indefinite integrals as <span class="math display">\[
+x(t)=Ce^{-\int p(t)\D t}+e^{-\int p(t)\D t}\int q(t)e^{\int p(t)\D t}\D t.
+\]</span> None of these formulas for the solution should be memorized, of course. It is much more efficient just to remember the steps: solve the homogeneous part, assume that the constant is a function, and determine this function.</p>
+</div>
+<div class="thm example style-definition" id="ex:1:23"><p><span class="thm-head">Example 1.26.</span> Solve <span class="math display">\[
+(t+x^2)\dot x=x.
+\]</span> At first glance this problem is <em>not</em> linear. However, I can again play with the derivative as a fraction: <span class="math display">\[
+(t+x^2)\frac{\D x}{\D t}=x\Longleftrightarrow \frac{\D t}{\D x}-\frac{t}{x}=x,
+\]</span> i.e., this equation is of the form <span class="math display">\[
+t'+p(x)t=q(x).
+\]</span> (A rigorous justification of this manipulation can be made with the help of the <em>inverse function theorem</em>, see also Remark <a href="section_1_2.html#rem1:11">1.11</a>.) Now <span class="math display">\[
+\frac{\D t}{t}=\frac{\D x}{x}\Longleftrightarrow \log {\lvert t\rvert }=\log {\lvert Cx\rvert }\Longleftrightarrow t=Cx,
+\]</span> and I point out that the arbitrary constant <span class="math inline">\(C\)</span> can be different in different parts of the equality (as it happened in the previous line). Now I look for the solution in the form <span class="math inline">\(t=C(x)x\)</span> and get <span class="math display">\[
+C'(x)=1\Longleftrightarrow C(x)=x+A,
+\]</span> which implies that <span class="math inline">\(t=x^2+Ax\)</span> is the general solution to the original equation, where <span class="math inline">\(A\)</span> is an arbitrary constant.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-21"><p><span class="thm-head">Exercise 1.21.</span> Consider the IVP <span class="math display">\[
+\dot x+\frac 23 x=1-\frac t2\,,\quad x(0)=x_0.
+\]</span> Find the value(s) of <span class="math inline">\(x_0\)</span> such that the solution touches, but does not cross, the <span class="math inline">\(t\)</span>-axis.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-22"><p><span class="thm-head">Exercise 1.22.</span> Find a bounded solution to <span class="math display">\[
+\dot x-x=\cos t-\sin t.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-23"><p><span class="thm-head">Exercise 1.23.</span> Consider the family of integral curves of a linear equation <span class="math inline">\(\dot x+p(t)x=q(t),\,p\neq 0\)</span>. Show that the tangent lines to the integral curves at the points with the same <span class="math inline">\(t\)</span>-coordinate cross at the same point.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-24"><p><span class="thm-head">Exercise 1.24.</span> Show that the equation <span class="math display">\[
+\dot x+x=f(t),
+\]</span> where <span class="math inline">\(f\)</span> is a continuous and bounded function (i.e., <span class="math inline">\({\lvert f(t)\rvert }\leq M\)</span> for any <span class="math inline">\(t\in \R\)</span> for some constant <span class="math inline">\(M\)</span>), has exactly one solution that is bounded on <span class="math inline">\(\R\)</span>. Find this solution. Show that if <span class="math inline">\(f\)</span> is periodic then this solution is also periodic. (<em>Hint:</em> Express the solution through an integral with an infinite limit.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-25"><p><span class="thm-head">Exercise 1.25.</span> Consider the equation <span class="math display">\[
+\dot x+a(t)x=f(t),
+\]</span> where <span class="math inline">\(a(t)\geq C&gt;0\)</span> for all <span class="math inline">\(t\)</span>, <span class="math inline">\(f(t)\to 0\)</span> as <span class="math inline">\(t\to\infty\)</span>, and the functions <span class="math inline">\(a,\,f\)</span> are continuous for <span class="math inline">\(t&gt;t_0\)</span>. Show that any solution of this equation approaches 0 as <span class="math inline">\(t\to\infty\)</span>. (<em>Hint:</em> Use the explicit formula.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-26"><p><span class="thm-head">Exercise 1.26.</span> Let <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> be two particular (different) solutions to the linear equation <span class="math inline">\(x'+p(t)x=q(t)\)</span>. Express the general solution to this equation through <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-27"><p><span class="thm-head">Exercise 1.27.</span> Find a periodic solution to the differential equation <span class="math display">\[
+\dot x=2x\cos^2 t-\sin t.
+\]</span> (<em>Hint:</em> It may be useful, but this is definitely not the only way to solve this problem, to show first that the equation <span class="math inline">\(x'=f(t,x)\)</span> with <span class="math inline">\(T\)</span>-periodic <span class="math inline">\(f\)</span> (i.e., <span class="math inline">\(f(t,x)=f(t+T,x)\)</span> for any <span class="math inline">\(t\)</span>) has a <span class="math inline">\(T\)</span>-periodic solution <span class="math inline">\(\phi\)</span> if and only if <span class="math inline">\(\phi(0)=\phi(T)\)</span>, provided that the solution is unique (this actually means that the problem to find a periodic solution boils down to a <em>boundary value problem</em>). Another approach to this problem is to express the general solution through an integral with the infinite (upper) limit.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-28"><p><span class="thm-head">Exercise 1.28.</span> Show that only one solution to <span class="math display">\[
+t\dot x-(2t^2+1)x=t^2
+\]</span> tends to a finite limit for <span class="math inline">\(t\to\infty\)</span> and find this limit.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-29"><p><span class="thm-head">Exercise 1.29.</span> Consider the linear homogeneous equation <span class="math display">\[
+\dot x=a(t)x.
+\]</span> Find the conditions on the function <span class="math inline">\(a\)</span> for the solutions to this equation to be periodic.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-30"><p><span class="thm-head">Exercise 1.30.</span> Consider the linear nonhomogeneous equation <span class="math display">\[
+\dot x=a(t)x+b(t),
+\]</span> where both <span class="math inline">\(a,\,b\)</span> are <span class="math inline">\(T\)</span>-periodic functions. Assume that <span class="math inline">\(\int_0^T a(\tau)\D \tau\neq 0\)</span>. Show that in this case there exists exactly one <span class="math inline">\(T\)</span>-periodic solution to the original equation.</p>
+</div>
+<h2 id="sec1-3-3"><span class="secnum">1.3.3</span><span class="sectitle">Exact equations</span></h2>
+<p>Going back to the geometric interpretation of the first-order ODE (and especially Remark <a href="section_1_2.html#rem1:11">1.11</a>), I remark that if I consider <span class="math display">\[
+\frac{\D x}{\D t}=f(t,x),
+\]</span> then I actually ignore the directions parallel to the <span class="math inline">\(x\)</span>-axis (the slope is infinite). If, as in Example <a href="#ex:1:23">1.26</a>, I take the point of view that <span class="math display">\[
+\frac{\D t}{\D x}=h(t,x),
+\]</span> then I ignore the directions parallel to the <span class="math inline">\(t\)</span>-axis.</p>
+<p>There is a general way to take care of both of these directions by writing the first-order ODE in the symmetric form <span class="math display">\[
+M(t,x)\D t+N(t,x)\D x=0,
+\]</span> where <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are some given functions. Now the direction is not defined only at those points <span class="math inline">\((t,x)\)</span> at which <em>both</em> <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> vanish.</p>
+<div class="thm definition style-plain" id="definition-1-27"><p><span class="thm-head">Definition 1.27.</span> A first-order ODE of the form <span class="math display">\[
+M(t,x)\D t+N(t,x)\D x=0
+\]</span> is called exact if there is a function <span class="math inline">\(F\colon U\subseteq \R^2\longrightarrow \R\)</span>, <span class="math inline">\(F\in \mathcal C^{(1)}(U)\)</span> such that <span class="math display">\[
+\D F=M(t,x)\D t+N(t,x)\D x.
+\]</span></p>
+</div>
+<p>Here <span class="math inline">\(\D F\)</span> is the total differential of the function of two variables, which is defined (let us take this definition at a formal level and not worry too much about what <span class="math inline">\(\D t\)</span> and <span class="math inline">\(\D x\)</span> actually mean) to be <span class="math display">\[
+\D F=\frac{\partial F}{\partial t}\D t+\frac{\partial F}{\partial x}\D x.
+\]</span> From the definition I immediately have that the general solution to the exact equation is given by <span class="math display">\[
+F(t,x)=\text{const}.
+\]</span> From analysis I know that if <span class="math inline">\(U\)</span> is “nice” (an open simply connected subset of the plane, i.e., without “holes”) then a necessary and sufficient condition for the equation to be exact is <span class="math display">\[
+\frac{\partial M}{\partial x}=\frac{\partial N}{\partial t}
+\]</span> for all points <span class="math inline">\((t,x)\in U\)</span>. In this case the function <span class="math inline">\(F\)</span> can be found by integration.</p>
+<div class="thm exercise style-definition" id="exercise-1-31"><p><span class="thm-head">Exercise 1.31.</span> Check that the following differential equation is exact and find its solution: <span class="math display">\[
+3x^2(1+\log y)\D x=\left(2y-\frac{x^3}{y}\right)\D y.
+\]</span></p>
+</div>
+<div class="thm remark style-remark" id="remark-1-28"><p><span class="thm-head">Remark 1.28.</span> In some sense <em>exactness</em> is what allows one to integrate an ODE in a closed form. Clearly, a separable equation <span class="math inline">\(\dot x=f_1(t)f_2(x)\)</span> written as <span class="math display">\[
+f_1(t)\D t-\frac{1}{f_2(x)}\D x=0
+\]</span> is exact (I of course assume that <span class="math inline">\(f_2\neq 0\)</span>).</p>
+<p>The linear equation <span class="math inline">\(\dot x+p(t)x=q(t)\)</span> is not exact, but it becomes exact after multiplication by an <em>integrating factor</em> <span class="math inline">\(\mu(t)=e^{\int_{t_0}^t p(\tau)\D \tau}\)</span>. Indeed, the ODE <span class="math display">\[
+\mu(t)\D x+(\mu(t)p(t)x-q(t)\mu(t))\D t=0
+\]</span> is exact (check it).</p>
+</div>
+<h2 id="sec1-3-4"><span class="secnum">1.3.4</span><span class="sectitle">Substitutions</span></h2>
+<p>Most ODE are neither separable, nor linear, nor exact. However, it is often possible to come up with a substitution that turns a given first-order ODE into one of these three types. Here are just two examples.</p>
+<div class="thm definition style-plain" id="definition-1-29"><p><span class="thm-head">Definition 1.29.</span> A first-order ODE of the form <span class="math display">\[
+\dot x=f\left(\frac{x}{t}\right)
+\]</span> is called homogeneous.</p>
+</div>
+<p>The substitution <span class="math inline">\(x(t)=u(t)t\)</span> turns it into a separable equation for the new unknown function <span class="math inline">\(u\)</span>.</p>
+<div class="thm remark style-remark" id="remark-1-30"><p><span class="thm-head">Remark 1.30.</span> I already used the term “homogeneous” for the linear homogeneous ODE <span class="math inline">\(\dot x+p(t)x=0\)</span>. Here the same word is used to refer to a different object, so be careful. The two are loosely related through the fact that the equations do not change after certain scalings of the variables, but these scalings are different (try to figure them out).</p>
+</div>
+<div class="thm definition style-plain" id="definition-1-31"><p><span class="thm-head">Definition 1.31.</span> A first-order ODE of the form <span class="math display">\[
+\dot x+p(t)x=q(t)x^n,\quad n\in\R\setminus\{0,1\}
+\]</span> is called Bernoulli’s equation.</p>
+</div>
+<p>The substitution <span class="math inline">\(u(t)=x^{1-n}(t)\)</span> turns it into a linear equation for the new unknown function <span class="math inline">\(u\)</span>. I also note that for <span class="math inline">\(n\)</span> non-integer I must require <span class="math inline">\(x&gt;0\)</span> and that for <span class="math inline">\(n&gt;0\)</span> after the substitution the solution <span class="math inline">\(x(t)=0\)</span> is lost.</p>
+<p>Modern computer algebra systems, like Maple<sup></sup> or Mathematica<sup></sup>, can solve a great many ODE in explicit form.</p>
+<div class="thm exercise style-definition" id="exercise-1-32"><p><span class="thm-head">Exercise 1.32.</span> Solve the following homogeneous differential equation <span class="math display">\[
+\dot x=\frac{t+x}{t-x}\,.
+\]</span> Sketch the integral curves. (<em>Hint:</em> For the sketch it is better to switch to polar coordinates <span class="math inline">\(t=\rho \cos \theta,\,x=\rho \sin \theta\)</span>; in fact, the equation itself can be solved equally simply in polar coordinates.)</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-33"><p><span class="thm-head">Exercise 1.33.</span> Recall that a function <span class="math inline">\(\psi\)</span> is called homogeneous of degree <span class="math inline">\(m\in\R\)</span> if for any <span class="math inline">\(\tau&gt;0\)</span> <span class="math inline">\(\psi(\tau t,\tau x)=\tau^m\psi(t,x)\)</span>. Prove that the equation <span class="math display">\[
+M(t,x)\D t+N(t,x)\D x=0
+\]</span> is homogeneous if <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are homogeneous functions of the same degree.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-1-34"><p><span class="thm-head">Exercise 1.34.</span> The solutions to <span class="math inline">\(\dot x=f(t)\)</span> are invariant with respect to translations along the <span class="math inline">\(x\)</span>-axis, and the solutions to <span class="math inline">\(\dot x=f(x)\)</span> are invariant with respect to translations along the <span class="math inline">\(t\)</span>-axis. Which geometric transformation leaves the integral curves of the homogeneous equation invariant?</p>
+</div>
+<h2 id="sec1-3-5"><span class="secnum">1.3.5</span><span class="sectitle">Liouville’s theorem</span></h2>
+<p>Can I always find an analytical solution (a formula) to a first-order ODE? The answer is negative, as it was proved by Joseph Liouville in 1839<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. To be precise, he showed that there are some specific second-order linear differential equations with non-constant coefficients that cannot be solved in elementary functions. To wit, the following theorem<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> holds.</p>
+<div class="thm theorem style-plain" id="theorem-1-32"><p><span class="thm-head">Theorem 1.32 (Liouville).</span> The solutions of the equation <span class="math inline">\(y''+xy=0\)</span> cannot be obtained from the field of rational functions of <span class="math inline">\(x\)</span> by any sequence of finite algebraic extensions, adjunctions of integrals, and adjunctions of exponentials of integrals.</p>
+</div>
+<p>It turns out that, after a specific substitution, <em>Riccati’s equation</em> <span class="math display">\[
+\dot x=q_0(t)+q_1(t)x+q_2(t)x^2
+\]</span> can be rewritten as a second-order linear ODE (I assume that <span class="math inline">\(q_2\in \mathcal C^{(1)},\,q_2\neq 0\)</span>). First it can be rewritten, using the new variable <span class="math inline">\(v=q_2(t)x\)</span>, as <span class="math display">\[
+\dot v=v^2+p_1(t)v+p_2(t),
+\]</span> and after this, using the substitution <span class="math inline">\(v=-{\dot u}/{u}\)</span>, as <span class="math display">\[
+\ddot u-p_1(t)\dot u+p_2(t)u=0,
+\]</span> which is a second-order linear ODE. If I take <span class="math inline">\(\dot x=x^2+t\)</span> then the corresponding second-order linear equation is <span class="math display">\[
+\ddot u+tu=0,
+\]</span> for which Liouville’s theorem holds. If I was able to find an analytical solution for <span class="math inline">\(x\)</span>, it would mean that <span class="math inline">\(u\)</span> could also be written as a formula, which would contradict Liouville’s theorem.</p>
+<div class="thm exercise style-definition" id="exercise-1-35"><p><span class="thm-head">Exercise 1.35.</span> Show that if one knows a particular solution <span class="math inline">\(x_p\)</span> to Riccati’s equation then the general solution can be found by quadratures (integration).</p>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Mémoire sur l’intégration d’une classe d’équations différentielles du second ordre en quantités finies explicites, Journal de Mathématiques pures et appliquées, 1839.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I am borrowing this theorem from Irving Kaplansky, An introduction to differential algebra, 1957, where all the glorious details can be found.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_1_2.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">1.2</span> Basic definitions and geometric interpretation of solutions</span></a><a class="next" href="section_1_4.html"><span class="dir">Next</span><span class="pt"><span class="pnum">1.4</span> Additional exercises</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>

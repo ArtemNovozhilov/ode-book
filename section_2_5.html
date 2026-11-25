@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section 2.5: On extending solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    tags: 'ams',
+    macros: {
+      C: '\\mathbf{C}',
+      D: '\\,\\mathrm{d}',
+      Div: '\\operatorname{div}',
+      E: ['\\mathrm{E}\\left(#1\\right)', 1],
+      I: '\\mathrm{i}',
+      IP: ['\\left\\langle #1,\\, #2\\right\\rangle', 2],
+      Im: '\\mathop{\\mathrm{Im}}\\nolimits',
+      Ind: ['\\mathbf{1}_{#1}', 1],
+      Int: '\\operatorname{int}',
+      N: '\\mathbf{N}',
+      Pr: ['\\mathrm{P}\\left\\{#1\\right\\}', 1],
+      R: '\\mathbf{R}',
+      Re: '\\mathop{\\mathrm{Re}}\\nolimits',
+      Span: '\\operatorname{span}',
+      Tr: '\\operatorname{tr}',
+      V: ['{\\mathbf{#1}}', 1],
+      Var: ['\\mathrm{Var}\\left(#1\\right)', 1],
+      Z: '\\mathbf{Z}',
+      arctanh: '\\operatorname{arctanh}',
+      bd: '\\operatorname{bd}',
+      bs: ['{\\boldsymbol{#1}}', 1],
+      diag: '\\operatorname{diag}',
+      erf: '\\operatorname{erf}',
+      grad: '\\operatorname{grad}',
+      im: '\\mathop{\\mathrm{im}}',
+      overbar: ['\\mkern 3.5mu\\overline{\\mkern-2mu#1\\mkern-3mu}\\mkern 3.5mu', 1],
+      pdt: '\\partial_t',
+      rank: '\\operatorname{rank}',
+      sign: '\\operatorname{sgn}'
+    }
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script defer src="notes.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="course-name" href="index.html">Introduction to the Theory of Ordinary Differential Equations</a>
+  <a class="all-sections" href="index.html">All sections</a>
+</header>
+<div class="layout single">
+<main>
+<header class="hero" id="top">
+  <span class="bignum" aria-hidden="true">2.5</span>
+  <div class="hero-text">
+    <p class="kicker">Section</p>
+    <h1>On extending solutions</h1>
+    <p class="byline">Chapter 2 · Fundamental theorems</p>
+  </div>
+  <svg class="emblem" viewBox="0 0 160 160" aria-hidden="true">
+<line x1="12.6" y1="142.2" x2="23.0" y2="142.2"/>
+<line x1="14.7" y1="130.9" x2="20.8" y2="122.5"/>
+<line x1="15.8" y1="115.9" x2="19.8" y2="106.3"/>
+<line x1="16.1" y1="100.5" x2="19.4" y2="90.6"/>
+<line x1="16.2" y1="85.0" x2="19.3" y2="75.0"/>
+<line x1="16.1" y1="69.4" x2="19.4" y2="59.5"/>
+<line x1="15.8" y1="53.7" x2="19.8" y2="44.1"/>
+<line x1="14.7" y1="37.5" x2="20.8" y2="29.1"/>
+<line x1="12.6" y1="17.8" x2="23.0" y2="17.8"/>
+<line x1="30.3" y1="138.0" x2="36.4" y2="146.4"/>
+<line x1="28.1" y1="126.7" x2="38.5" y2="126.7"/>
+<line x1="29.6" y1="114.8" x2="37.0" y2="107.5"/>
+<line x1="30.6" y1="99.9" x2="36.1" y2="91.2"/>
+<line x1="30.8" y1="84.5" x2="35.9" y2="75.5"/>
+<line x1="30.6" y1="68.8" x2="36.1" y2="60.1"/>
+<line x1="29.6" y1="52.5" x2="37.0" y2="45.2"/>
+<line x1="28.1" y1="33.3" x2="38.5" y2="33.3"/>
+<line x1="30.3" y1="13.6" x2="36.4" y2="22.0"/>
+<line x1="46.9" y1="137.4" x2="50.9" y2="147.0"/>
+<line x1="45.2" y1="123.0" x2="52.6" y2="130.3"/>
+<line x1="43.7" y1="111.1" x2="54.1" y2="111.1"/>
+<line x1="44.4" y1="98.2" x2="53.4" y2="92.9"/>
+<line x1="44.8" y1="83.2" x2="53.0" y2="76.8"/>
+<line x1="44.4" y1="67.1" x2="53.4" y2="61.8"/>
+<line x1="43.7" y1="48.9" x2="54.1" y2="48.9"/>
+<line x1="45.2" y1="29.7" x2="52.6" y2="37.0"/>
+<line x1="46.9" y1="13.0" x2="50.9" y2="22.6"/>
+<line x1="62.8" y1="137.3" x2="66.1" y2="147.1"/>
+<line x1="61.7" y1="122.3" x2="67.2" y2="131.1"/>
+<line x1="60.0" y1="108.5" x2="68.9" y2="113.8"/>
+<line x1="59.2" y1="95.6" x2="69.6" y2="95.6"/>
+<line x1="59.3" y1="81.0" x2="69.5" y2="79.0"/>
+<line x1="59.2" y1="64.4" x2="69.6" y2="64.4"/>
+<line x1="60.0" y1="46.2" x2="68.9" y2="51.5"/>
+<line x1="61.7" y1="28.9" x2="67.2" y2="37.7"/>
+<line x1="62.8" y1="12.9" x2="66.1" y2="22.7"/>
+<line x1="78.4" y1="137.3" x2="81.6" y2="147.2"/>
+<line x1="77.5" y1="122.1" x2="82.5" y2="131.2"/>
+<line x1="75.9" y1="107.9" x2="84.1" y2="114.3"/>
+<line x1="74.9" y1="94.5" x2="85.1" y2="96.6"/>
+<line x1="74.8" y1="80.0" x2="85.2" y2="80.0"/>
+<line x1="74.9" y1="63.4" x2="85.1" y2="65.5"/>
+<line x1="75.9" y1="45.7" x2="84.1" y2="52.1"/>
+<line x1="77.5" y1="28.8" x2="82.5" y2="37.9"/>
+<line x1="78.4" y1="12.8" x2="81.6" y2="22.7"/>
+<line x1="93.9" y1="137.3" x2="97.2" y2="147.1"/>
+<line x1="92.8" y1="122.3" x2="98.3" y2="131.1"/>
+<line x1="91.1" y1="108.5" x2="100.0" y2="113.8"/>
+<line x1="90.4" y1="95.6" x2="100.8" y2="95.6"/>
+<line x1="90.5" y1="81.0" x2="100.7" y2="79.0"/>
+<line x1="90.4" y1="64.4" x2="100.8" y2="64.4"/>
+<line x1="91.1" y1="46.2" x2="100.0" y2="51.5"/>
+<line x1="92.8" y1="28.9" x2="98.3" y2="37.7"/>
+<line x1="93.9" y1="12.9" x2="97.2" y2="22.7"/>
+<line x1="109.1" y1="137.4" x2="113.1" y2="147.0"/>
+<line x1="107.4" y1="123.0" x2="114.8" y2="130.3"/>
+<line x1="105.9" y1="111.1" x2="116.3" y2="111.1"/>
+<line x1="106.6" y1="98.2" x2="115.6" y2="92.9"/>
+<line x1="107.0" y1="83.2" x2="115.2" y2="76.8"/>
+<line x1="106.6" y1="67.1" x2="115.6" y2="61.8"/>
+<line x1="105.9" y1="48.9" x2="116.3" y2="48.9"/>
+<line x1="107.4" y1="29.7" x2="114.8" y2="37.0"/>
+<line x1="109.1" y1="13.0" x2="113.1" y2="22.6"/>
+<line x1="123.6" y1="138.0" x2="129.7" y2="146.4"/>
+<line x1="121.5" y1="126.7" x2="131.9" y2="126.7"/>
+<line x1="123.0" y1="114.8" x2="130.4" y2="107.5"/>
+<line x1="123.9" y1="99.9" x2="129.4" y2="91.2"/>
+<line x1="124.1" y1="84.5" x2="129.2" y2="75.5"/>
+<line x1="123.9" y1="68.8" x2="129.4" y2="60.1"/>
+<line x1="123.0" y1="52.5" x2="130.4" y2="45.2"/>
+<line x1="121.5" y1="33.3" x2="131.9" y2="33.3"/>
+<line x1="123.6" y1="13.6" x2="129.7" y2="22.0"/>
+<line x1="137.0" y1="142.2" x2="147.4" y2="142.2"/>
+<line x1="139.2" y1="130.9" x2="145.3" y2="122.5"/>
+<line x1="140.2" y1="115.9" x2="144.2" y2="106.3"/>
+<line x1="140.6" y1="100.5" x2="143.9" y2="90.6"/>
+<line x1="140.7" y1="85.0" x2="143.8" y2="75.0"/>
+<line x1="140.6" y1="69.4" x2="143.9" y2="59.5"/>
+<line x1="140.2" y1="53.7" x2="144.2" y2="44.1"/>
+<line x1="139.2" y1="37.5" x2="145.3" y2="29.1"/>
+<line x1="137.0" y1="17.8" x2="147.4" y2="17.8"/>
+<polyline class="curve" points="10.3,115.2 11.4,112.1 12.4,108.9 13.5,105.7 14.5,102.4 15.6,99.2 16.6,96.0 17.7,92.8 18.7,89.6 19.8,86.5 20.8,83.5 21.9,80.5 22.9,77.7 24.0,74.9 25.0,72.3 26.1,69.9 27.1,67.5 28.2,65.4 29.2,63.3 30.3,61.4 31.3,59.7 32.4,58.1 33.4,56.6 34.5,55.3 35.5,54.1 36.6,53.0 37.6,52.1 38.7,51.3 39.7,50.6 40.8,50.0 41.8,49.5 42.9,49.1 43.9,48.8 45.0,48.5 46.0,48.4 47.1,48.3 48.1,48.2 49.2,48.3 50.2,48.3 51.3,48.5 52.3,48.6 53.4,48.8 54.4,49.1 55.5,49.4 56.5,49.7 57.6,50.0 58.6,50.3 59.7,50.7 60.7,51.1 61.8,51.5 62.8,51.9 63.9,52.4 64.9,52.8 66.0,53.2 67.0,53.7 68.1,54.1 69.2,54.6 70.2,55.0 71.2,55.5 72.3,55.9 73.3,56.4 74.4,56.8 75.5,57.3 76.5,57.7 77.5,58.1 78.6,58.5 79.7,58.9 80.7,59.2 81.8,59.6 82.8,60.0 83.8,60.3 84.9,60.6 86.0,60.9 87.0,61.2 88.0,61.4 89.1,61.6 90.2,61.8 91.2,62.0 92.2,62.2 93.3,62.3 94.4,62.4 95.4,62.5 96.5,62.5 97.5,62.6 98.6,62.5 99.6,62.5 100.7,62.4 101.7,62.3 102.8,62.1 103.8,61.9 104.9,61.7 105.9,61.5 107.0,61.2 108.0,60.8 109.1,60.4 110.1,60.0 111.2,59.6 112.2,59.1 113.3,58.5 114.3,58.0 115.4,57.4 116.4,56.7 117.5,56.0 118.5,55.3 119.6,54.5 120.6,53.7 121.7,52.9 122.7,52.0 123.8,51.1 124.8,50.2 125.9,49.2 126.9,48.2 128.0,47.2 129.0,46.1 130.1,45.0 131.1,43.9 132.2,42.8 133.2,41.6 134.3,40.4 135.3,39.3 136.4,38.0 137.4,36.8 138.5,35.6 139.5,34.4 140.6,33.1 141.6,31.8 142.7,30.6 143.7,29.3 144.8,28.0 145.8,26.7 146.9,25.5 147.9,24.2 149.0,22.9"/>
+<circle class="pt" cx="80.0" cy="59.0" r="3.5"/>
+</svg>
+</header>
+<article class="notes">
+<p>Theorem <a href="section_2_4.html#th2:PL">2.42</a> is local. In this section I will discuss how the solutions to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> can be extended beyond the established interval. Everywhere in this section I assume that the conditions of Theorem <a href="section_2_4.html#th2:PL">2.42</a> hold. I start with an almost obvious lemma, which, however, will allow me to <em>extend</em> my local solution to the largest possible interval of <span class="math inline">\(t\)</span>.</p>
+<div class="thm lemma style-plain" id="l2:globuniq"><p><span class="thm-head">Lemma 2.45.</span> Let <span class="math inline">\(\bs x\)</span> and <span class="math inline">\(\bs y\)</span> be two solutions to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> defined on intervals <span class="math inline">\(I_{\bs x}\)</span> and <span class="math inline">\(I_{\bs y}\)</span>. Then <span class="math inline">\(\bs x(t)=\bs y(t)\)</span> for all <span class="math inline">\(t\in I_{\bs x}\cap I_{\bs y}\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Assume that <span class="math inline">\(\bs x(t)\neq\bs y(t)\)</span> for some <span class="math inline">\(t&gt;t_0\)</span> (the case <span class="math inline">\(t&lt;t_0\)</span> is similar), and let <span class="math inline">\(t^\ast\)</span> be the supremum of those <span class="math inline">\(s\)</span> for which <span class="math inline">\(\bs x=\bs y\)</span> on <span class="math inline">\([t_0,s]\)</span>. By continuity, <span class="math inline">\(\bs x(t^\ast)=\bs y(t^\ast)\)</span>. Applying the main theorem with the initial condition at <span class="math inline">\(t^\ast\)</span>, I get that <span class="math inline">\(\bs x=\bs y\)</span> in a neighborhood of <span class="math inline">\(t^\ast\)</span>, which contradicts the definition of <span class="math inline">\(t^\ast\)</span>. <span class="qed">&#9632;</span></p></div>
+<div class="thm definition style-plain" id="definition-2-46"><p><span class="thm-head">Definition 2.46.</span> A solution to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> is called <em>maximal</em> if it cannot be extended to a solution on a larger interval. A maximal solution is called <em>global</em> if its domain coincides with <span class="math inline">\(J\)</span>.</p>
+</div>
+<p>To make sure that my definition makes sense, I must show that a maximal solution always exists. This is the next theorem.</p>
+<div class="thm theorem style-plain" id="th2:maximal"><p><span class="thm-head">Theorem 2.47.</span> Problem <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> has a unique maximal solution. It is defined on an open interval <span class="math inline">\((\alpha,\beta)\)</span>, where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> may be infinite.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Let <span class="math inline">\(I\)</span> be the union of the intervals of all solutions to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span>, and for <span class="math inline">\(t\in I\)</span> set <span class="math inline">\(\bs x(t)\)</span> to be the value at <span class="math inline">\(t\)</span> of any solution defined at <span class="math inline">\(t\)</span>. By Lemma <a href="#l2:globuniq">2.45</a> this does not depend on the choice of the solution, and <span class="math inline">\(\bs x\)</span> is a solution on <span class="math inline">\(I\)</span> that, by construction, cannot be extended. Any other maximal solution coincides with <span class="math inline">\(\bs x\)</span> by Lemma <a href="#l2:globuniq">2.45</a>.</p>
+<p>If <span class="math inline">\(I\)</span> contained its right endpoint <span class="math inline">\(\beta\)</span>, then, since <span class="math inline">\((\beta,\bs x(\beta))\in U\)</span> and <span class="math inline">\(U\)</span> is open, Theorem <a href="section_2_4.html#th2:PL">2.42</a> with the initial condition at <span class="math inline">\(\beta\)</span> would extend <span class="math inline">\(\bs x\)</span> beyond <span class="math inline">\(\beta\)</span>. Hence <span class="math inline">\(I\)</span> is open. <span class="qed">&#9632;</span></p></div>
+<p>Next, I would like to understand what happens to the maximal solution to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> when <span class="math inline">\(t\to\beta\)</span> or <span class="math inline">\(t\to\alpha\)</span>. This will be the second fundamental result of this chapter. I will look only at the interval <span class="math inline">\([t_0,\beta)\)</span>; the other half can be handled similarly.</p>
+<div class="thm theorem style-plain" id="th2:leave"><p><span class="thm-head">Theorem 2.48.</span> In the setting of the existence and uniqueness theorem let <span class="math inline">\(U\)</span> be open, and let <span class="math inline">\(K\subseteq U\)</span> be compact. Let <span class="math inline">\(t\mapsto \bs \phi(t)\)</span> be the maximal solution through the point <span class="math inline">\((t_0,\bs x_0)\)</span>, defined on <span class="math inline">\((\alpha,\beta)\)</span>. Then there exists <span class="math inline">\(t_K&lt;\beta\)</span> such that <span class="math inline">\((t,\bs \phi(t))\notin K\)</span> for all <span class="math inline">\(t\in(t_K,\beta)\)</span>.</p>
+</div>
+<p>(In words: the graph of the maximal solution eventually leaves any compact set and never returns.)</p>
+<div class="proof"><p><span class="thm-head">Proof.</span> I will prove this theorem by contradiction. So, assume that <span class="math inline">\(\bs \phi\)</span> does not leave <span class="math inline">\(K\)</span> for good.</p>
+<p><span class="math inline">\((i)\)</span> That means that there exists a sequence <span class="math inline">\(t_n\to\beta\)</span> such that <span class="math inline">\((t_n,\bs\phi(t_n))\in K\)</span>, and hence <span class="math inline">\(\beta\)</span> is finite.</p>
+<p><span class="math inline">\((ii)\)</span> Since <span class="math inline">\(K\)</span> is compact and <span class="math inline">\(U\)</span> is open, there is a positive distance between <span class="math inline">\(K\)</span> and the boundary of <span class="math inline">\(U\)</span> (to be precise, <span class="math inline">\(\operatorname{dist}(K,\R^{k+1}\setminus U)&gt;0\)</span> when <span class="math inline">\(U\neq \R^{k+1}\)</span>). This implies that it is always possible to find <span class="math inline">\(r&gt;0\)</span> such that the set <span class="math inline">\(K_r=\{(t,\bs x)\colon\ {\lvert t-\tau\rvert }\le r,\ {\lvert \bs x-\bs \xi\rvert }\le r \text{ for some } (\tau,\bs \xi)\in K\}\)</span> lies in <span class="math inline">\(U\)</span>. The set <span class="math inline">\(K_r\)</span> is compact. Let <span class="math inline">\(M=\max_{K_r}{\lvert \bs f\rvert }\)</span>. For every <span class="math inline">\((\tau,\bs \xi)\in K\)</span> the cube of half-side <span class="math inline">\(r\)</span> around it lies in <span class="math inline">\(K_r\)</span>, so Theorem <a href="section_2_4.html#th2:PL">2.42</a> gives a solution through <span class="math inline">\((\tau,\bs \xi)\)</span> on <span class="math inline">\([\tau-\delta,\tau+\delta]\)</span> with <span class="math inline">\(\delta=\min\{r,\ r/M\}\)</span>, which does not depend on <span class="math inline">\((\tau,\bs \xi)\)</span>.</p>
+<p><span class="math inline">\((iii)\)</span> Now pick <span class="math inline">\(t_n\)</span> from the sequence such that <span class="math inline">\(t_n&gt;\beta-\delta\)</span>, which is possible due to <span class="math inline">\((i)\)</span> and <span class="math inline">\((ii)\)</span>. The point <span class="math inline">\((t_n,\bs\phi(t_n))\)</span> belongs to <span class="math inline">\(K\)</span>, hence, by <span class="math inline">\((ii)\)</span>, there is a solution <span class="math inline">\(\bs \psi\)</span> on <span class="math inline">\([t_n-\delta,t_n+\delta]\)</span> with <span class="math inline">\(\bs \psi(t_n)=\bs \phi(t_n)\)</span>. By Lemma <a href="#l2:globuniq">2.45</a>, <span class="math inline">\(\bs\psi\)</span> and <span class="math inline">\(\bs\phi\)</span> coincide at least on <span class="math inline">\((t_n-\delta,\beta)\)</span>.</p>
+<p><span class="math inline">\((iv)\)</span> Now construct the function <span class="math display">\[
+\bs \sigma(t)=\begin{cases}\bs \phi(t),&amp;t\in(\alpha,\beta),\\
+\bs \psi(t),&amp;t\in[t_n,t_n+\delta).
+\end{cases}
+\]</span> By construction <span class="math inline">\(\bs \sigma\)</span> is <span class="math inline">\(\mathcal C^{(1)}\)</span> and solves <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> on <span class="math inline">\((\alpha,t_n+\delta)\)</span>. This contradicts the maximality of <span class="math inline">\(\bs\phi\)</span>. <span class="qed">&#9632;</span></p></div>
+<p>Now I state several important corollaries of this theorem.</p>
+<div class="thm corollary style-plain" id="corollary-2-49"><p><span class="thm-head">Corollary 2.49.</span> Let <span class="math inline">\(U=\R\times X\)</span> (i.e., <span class="math inline">\(\bs f\)</span> is defined for all <span class="math inline">\(t\)</span>). If <span class="math inline">\(\bs \phi\)</span> is the maximal solution to <span class="eqref">(<a href="section_2_4.html#eq2:7">2.7</a>)</span> on <span class="math inline">\([t_0,\beta)\)</span> and <span class="math inline">\(\bs \phi\)</span> stays in a compact subset <span class="math inline">\(K\)</span> of <span class="math inline">\(X\)</span>, then <span class="math inline">\(\beta=+\infty\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Assume that <span class="math inline">\(\beta\)</span> is finite and use the compact set <span class="math inline">\([t_0,\beta]\times K\subseteq U\)</span>. The theorem says that the graph of <span class="math inline">\(\bs \phi\)</span> must leave this set, but by assumption it stays inside. A contradiction. <span class="qed">&#9632;</span></p></div>
+<p>The previous corollary treats only the forward interval <span class="math inline">\([t_0,\beta)\)</span>; a similar fact clearly holds for <span class="math inline">\((\alpha,t_0]\)</span>. A useful rephrasing (taking into account both directions of <span class="math inline">\(t\)</span>): if for the autonomous problem <span class="math inline">\(\dot{\bs x}=\bs f(\bs x),\,\bs x(t)\in X\)</span>, the solutions never leave a compact set <span class="math inline">\(K\subseteq X\)</span>, they must be global.</p>
+<div class="thm corollary style-plain" id="corollary-2-50"><p><span class="thm-head">Corollary 2.50.</span> Assume <span class="math inline">\(U=J\times \R^k\)</span>, <span class="math inline">\(J=(c,d)\)</span>. If <span class="math inline">\(\beta&lt;d\)</span>, then <span class="math inline">\({\lvert \bs\phi(t)\rvert }\to\infty\)</span> as <span class="math inline">\(t\to\beta\)</span>.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Since <span class="math inline">\(\beta&lt; d\)</span>, I can use <span class="math inline">\([t_0,\beta]\times\{{\lvert \bs x\rvert }\leq R\}\subseteq U\)</span> as a compact set. Theorem <a href="#th2:leave">2.48</a> implies that <span class="math inline">\({\lvert \bs \phi(t)\rvert }&gt;R\)</span> for <span class="math inline">\(t\)</span> close to <span class="math inline">\(\beta\)</span>. Since <span class="math inline">\(R\)</span> is arbitrary, the conclusion follows. <span class="qed">&#9632;</span></p></div>
+<p>I will postpone the discussion of another very useful corollary to the next section, and conclude this section with the so-called comparison theorem, which is often useful in deciding how far solutions to scalar equations can be continued.</p>
+<div class="thm theorem style-plain" id="th2:comp"><p><span class="thm-head">Theorem 2.51 (Comparison theorem).</span> Consider the ODE <span class="math inline">\(\dot y=g(t,y),\,y(t_0)=x_0\)</span>, <span class="math inline">\(y(t)\in \R\)</span>, and assume that <span class="math inline">\(g\)</span> is Lipschitz in <span class="math inline">\(y\)</span> for <span class="math inline">\(t\geq t_0\)</span>. Assume that <span class="math inline">\(x\)</span> with <span class="math inline">\(x(t_0)=x_0\)</span> satisfies the differential inequality <span class="math inline">\(\dot x\leq g(t,x)\)</span> for <span class="math inline">\(t\geq t_0\)</span>. Then <span class="math inline">\(x(t)\leq y(t)\)</span> for <span class="math inline">\(t\geq t_0\)</span> where both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are defined.</p>
+</div>
+<div class="proof"><p><span class="thm-head">Proof.</span> Looking for a contradiction, assume that there is <span class="math inline">\(t_2&gt; t_0\)</span> such that <span class="math inline">\(x(t_2)&gt;y(t_2)\)</span>. This implies that there is the largest <span class="math inline">\(t_1\in[t_0,t_2]\)</span> such that <span class="math inline">\(x(t_1)\leq y(t_1)\)</span>. Moreover, <span class="math inline">\(x(t_1)=y(t_1)\)</span> by continuity. Take <span class="math display">\[
+z(t)=x(t)-y(t)\geq 0,\quad t\in[t_1,t_2].
+\]</span> I have (since <span class="math inline">\(g\)</span> is Lipschitz) <span class="math display">\[
+\dot z(t)=\dot x(t)-\dot y(t)\leq g(t,x(t))-g(t,y(t))\leq L(x(t)-y(t))=Lz(t).
+\]</span> The last differential inequality implies (see the exercise) that <span class="math display">\[
+z(t)\leq z(t_1)e^{L(t-t_1)}=0
+\]</span> or <span class="math inline">\(x(t)\leq y(t)\)</span>. Contradiction. <span class="qed">&#9632;</span></p></div>
+<div class="thm exercise style-definition" id="exercise-2-23"><p><span class="thm-head">Exercise 2.23.</span> Prove that if <span class="math display">\[
+\dot z(t)\leq Lz(t),\quad t\geq t_0
+\]</span> then <span class="math display">\[
+z(t)\leq z(t_0)e^{L(t-t_0)}.
+\]</span></p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-24"><p><span class="thm-head">Exercise 2.24.</span> Assume that <span class="math inline">\(\dot x=f(t,x)\)</span>, <span class="math inline">\(\dot y=g(t,y)\)</span>, <span class="math inline">\(x(t_0)=y(t_0)\)</span>. Moreover, assume <span class="math inline">\(f(t,x)\leq g(t,x)\)</span> and one of <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> is Lipschitz continuous. Then <span class="math inline">\(x(t)\leq y(t)\)</span> for <span class="math inline">\(t\geq t_0\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-25"><p><span class="thm-head">Exercise 2.25.</span> For which <span class="math inline">\(a\)</span> can any solution to <span class="math display">\[
+\dot x=(x^2+e^t)^a
+\]</span> be extended to the whole real line <span class="math inline">\(-\infty&lt;t&lt;+\infty\)</span>?</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-26"><p><span class="thm-head">Exercise 2.26.</span> Let <span class="math inline">\(\dot x=f(t,x)\)</span> and <span class="math inline">\(f\colon \R\times \R\longrightarrow \R\)</span>. Suppose that <span class="math inline">\(xf(t,x)&lt;0\)</span> for <span class="math inline">\({\lvert x\rvert }&gt;R\)</span>. Show that all the solutions exist for all <span class="math inline">\(t&gt;t_0\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-27"><p><span class="thm-head">Exercise 2.27.</span> Show that for any <span class="math inline">\((t_0,x_0)\in \R^2\)</span> the solution to the IVP <span class="math display">\[
+\dot x=tx+e^{-x},\quad x(t_0)=x_0
+\]</span> exists on <span class="math inline">\([t_0,+\infty)\)</span>.</p>
+<p>What about <span class="math inline">\((-\infty,t_0]\)</span>?</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-28"><p><span class="thm-head">Exercise 2.28.</span> Show that the solution to <span class="math display">\[
+\dot x=t+x^2,\quad x(0)=0
+\]</span> cannot be extended to <span class="math inline">\((-\infty,\infty)\)</span>.</p>
+</div>
+<div class="thm exercise style-definition" id="exercise-2-29"><p><span class="thm-head">Exercise 2.29.</span> Consider <span class="math display">\[
+\dot x=t^3-x^3,\quad x(t_0)=x_0\in\R.
+\]</span> Prove that for any <span class="math inline">\((t_0,x_0)\in\R^2\)</span> the solution to this problem can be extended to <span class="math inline">\([t_0,\infty)\)</span>, and that there exist solutions that cannot be extended to <span class="math inline">\((-\infty,t_0]\)</span>.</p>
+</div>
+</article>
+<nav class="pager" aria-label="More sections"><a class="prev" href="section_2_4.html"><span class="dir">Previous</span><span class="pt"><span class="pnum">2.4</span> Existence and uniqueness theorem</span></a><a class="next" href="section_2_6.html"><span class="dir">Next</span><span class="pt"><span class="pnum">2.6</span> Dependence on the parameters and initial conditions</span></a></nav>
+</main>
+</div>
+<a class="to-top" href="#" aria-label="Back to top">&uarr;</a>
+</body>
+</html>
